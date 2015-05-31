@@ -23,6 +23,11 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * @author siavashnazari
+ *
+ */
 public class DoctorPatientViewPage extends JFrame {
 
 	/**

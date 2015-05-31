@@ -14,6 +14,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
+/**
+ * 
+ * @author siavashnazari
+ *
+ */
 public class PatientSubmitPhysicalActivityPage extends JFrame {
 
 	/**

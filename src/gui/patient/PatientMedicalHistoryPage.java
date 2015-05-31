@@ -22,6 +22,11 @@ import javax.swing.JList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * @author siavashnazari
+ *
+ */
 public class PatientMedicalHistoryPage extends JFrame {
 
 	/**

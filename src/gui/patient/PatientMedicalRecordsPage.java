@@ -8,7 +8,11 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-
+/**
+ * 
+ * @author siavashnazari
+ *
+ */
 public class PatientMedicalRecordsPage extends JFrame {
 
 	/**

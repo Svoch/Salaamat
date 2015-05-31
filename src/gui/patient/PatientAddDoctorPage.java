@@ -24,6 +24,11 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * @author siavashnazari
+ *
+ */
 public class PatientAddDoctorPage extends JFrame {
 
 	/**

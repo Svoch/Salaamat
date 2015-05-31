@@ -24,6 +24,11 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JScrollPane;
 
+/**
+ * 
+ * @author siavashnazari
+ *
+ */
 public class DrugstoreMainPage extends JFrame {
 
 	/**
