@@ -21,8 +21,13 @@ import java.awt.event.MouseListener;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import users.Doctor;
+import users.login.IUserManager;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -38,10 +43,9 @@ public class PatientAddDoctorPage extends JFrame {
 
 	private JPanel contentPane;
 
-	String doctorsList[] = { "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->" };
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField firstnameTextField;
+	private JTextField surnameTextField;
+	private JTextField specialtyTextField;
 	
 	/**
 	 * Launch the application.
@@ -70,28 +74,40 @@ public class PatientAddDoctorPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label = new JLabel("\u0644\u06CC\u0633\u062A \u067E\u0632\u0634\u06A9\u0627\u0646 \u0639\u0645\u0648\u0645\u06CC");
-		label.setBounds(300, 6, 144, 29);
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		contentPane.add(label);
+		JLabel titleLabel = new JLabel("لیست پزشکان عمومی");
+		titleLabel.setBounds(300, 6, 144, 29);
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		contentPane.add(titleLabel);
 
 	    
 	    MouseListener mouseListener = new MouseAdapter() {
 	      @SuppressWarnings("deprecation")
 		public void mouseClicked(MouseEvent mouseEvent) {
 	        JList theList = (JList) mouseEvent.getSource();
+	        
+	        /*
+	         * this part is just for debugging :D
+	         */
+	        if (mouseEvent.getClickCount() == 1 ) {
+	        	int index = theList.locationToIndex(mouseEvent.getPoint());
+	        	if(index >=0) {
+	        		Object o = theList.getModel().getElementAt(index);
+	            	System.err.println("selected item: " + o + " : " + o.getClass());
+	        	}
+	        }
+	        
+	        
 	        if (mouseEvent.getClickCount() == 2) {
 	          int index = theList.locationToIndex(mouseEvent.getPoint());
 	          if (index >= 0) {
 	            Object o = theList.getModel().getElementAt(index);
-	            
 	            //----------------- Add doctor selection page here
 	            
 	            EventQueue.invokeLater(new Runnable() {
 	    			public void run() {
 	    				try {
-	    					PatientRequestDoctorPage frame = new PatientRequestDoctorPage(new PatientAddDoctorPage());
+	    					PatientRequestDoctorPage frame = new PatientRequestDoctorPage((Doctor) o, new PatientAddDoctorPage());
 	    					frame.setVisible(true);
 	    				} catch (Exception e) {
 	    					e.printStackTrace();
@@ -101,7 +117,6 @@ public class PatientAddDoctorPage extends JFrame {
 	            
 	            contentPane.removeAll();
 	            contentPane.repaint();
-	            
 	            hide();
 	            
 	            System.out.println("Double-clicked on: " + o.toString());
@@ -114,75 +129,109 @@ public class PatientAddDoctorPage extends JFrame {
 	    scrollPane.setBounds(225, 49, 205, 190);
 	    contentPane.add(scrollPane);
 	    
-	    JList jlist = new JList(doctorsList);
-	    scrollPane.setViewportView(jlist);
-	    jlist.addMouseListener(mouseListener);
-	    //	    contentPane.add(scrollPane1);
-	    jlist.setBackground(Color.WHITE);
+
+		List doctorsList = IUserManager.getAllDoctorsList();
+		JList jList = new JList(doctorsList.toArray());
+		scrollPane.setViewportView(jList);
+		jList.addMouseListener(mouseListener);
+		jList.setBackground(Color.WHITE);
+		
 	    
-	    JLabel label_1 = new JLabel("\u062C\u0633\u062A \u0648 \u062C\u0648 \u062F\u0631 \u0644\u06CC\u0633\u062A");
-	    label_1.setHorizontalAlignment(SwingConstants.CENTER);
-	    label_1.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-	    label_1.setBounds(54, 13, 144, 29);
-	    contentPane.add(label_1);
+	    JLabel searchTitleLabel = new JLabel("جست و جو در لیست");
+	    searchTitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	    searchTitleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+	    searchTitleLabel.setBounds(54, 13, 144, 29);
+	    contentPane.add(searchTitleLabel);
 	    
-	    JLabel label_2 = new JLabel("\u0646\u0627\u0645");
-	    label_2.setHorizontalAlignment(SwingConstants.CENTER);
-	    label_2.setBounds(152, 59, 61, 16);
-	    contentPane.add(label_2);
+	    JLabel firstnameLabel = new JLabel("نام");
+	    firstnameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	    firstnameLabel.setBounds(152, 59, 61, 16);
+	    contentPane.add(firstnameLabel);
 	    
-	    JLabel label_3 = new JLabel("\u0646\u0627\u0645 \u062E\u0627\u0646\u0648\u0627\u062F\u06AF\u06CC");
-	    label_3.setHorizontalAlignment(SwingConstants.CENTER);
-	    label_3.setBounds(140, 87, 73, 16);
-	    contentPane.add(label_3);
+	    JLabel surnameLabel = new JLabel("نام خانوادگی");
+	    surnameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	    surnameLabel.setBounds(140, 87, 73, 16);
+	    contentPane.add(surnameLabel);
 	    
-	    JLabel label_4 = new JLabel("\u062A\u062E\u0635\u0635\n");
-	    label_4.setHorizontalAlignment(SwingConstants.CENTER);
-	    label_4.setBounds(152, 115, 61, 16);
-	    contentPane.add(label_4);
+	    JLabel specialtyLabel = new JLabel("تخصص");
+	    specialtyLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	    specialtyLabel.setBounds(152, 115, 61, 16);
+	    contentPane.add(specialtyLabel);
 	    
-	    textField = new JTextField();
-	    textField.setColumns(10);
-	    textField.setBounds(32, 49, 108, 28);
-	    contentPane.add(textField);
+	    firstnameTextField = new JTextField();
+	    firstnameTextField.setColumns(10);
+	    firstnameTextField.setBounds(32, 49, 108, 28);
+	    contentPane.add(firstnameTextField);
 	    
-	    textField_1 = new JTextField();
-	    textField_1.setColumns(10);
-	    textField_1.setBounds(32, 81, 108, 28);
-	    contentPane.add(textField_1);
+	    surnameTextField = new JTextField();
+	    surnameTextField.setColumns(10);
+	    surnameTextField.setBounds(32, 81, 108, 28);
+	    contentPane.add(surnameTextField);
 	    
-	    textField_2 = new JTextField();
-	    textField_2.setColumns(10);
-	    textField_2.setBounds(32, 109, 108, 28);
-	    contentPane.add(textField_2);
+	    specialtyTextField = new JTextField();
+	    specialtyTextField.setColumns(10);
+	    specialtyTextField.setBounds(32, 109, 108, 28);
+	    contentPane.add(specialtyTextField);
 	    
-	    JButton button = new JButton("\u062C\u0633\u062A \u0648 \u062C\u0648");
+	    JButton button = new JButton("جست و جو");
 	    button.addActionListener(new ActionListener() {
-	    	@SuppressWarnings("deprecation")
-			public void actionPerformed(ActionEvent arg0) {
 	    	
-	    		EventQueue.invokeLater(new Runnable() {
-	    			public void run() {
-	    				try {
-	    					PatientAddDoctorPage frame = new PatientAddDoctorPage();
-	    					frame.setVisible(true);
-	    				} catch (Exception e) {
-	    					e.printStackTrace();
-	    				}
-	    			}
-	    		});
+	    	public void actionPerformed(ActionEvent arg0) {
+	    	
+	    		ArrayList<Doctor> searchedList = new ArrayList<Doctor>();
+	    		for(int i=0; i<doctorsList.size(); i++) {
+					System.err.println(((Doctor)doctorsList.get(i)).getSpecialty());
+					/*
+					 * this one seems complicated but it is simple: there is a logical equivalence between p=>q and ¬p∨q 
+					 * note that p is "textField is not empty" and q is "what textField contains is a part of search criteria"
+					 * TODO extract method for this one
+					 */
+	    			if( ( firstnameTextField.getText().equals("") || ((Doctor)doctorsList.get(i)).getFirstname().contains(firstnameTextField.getText()) )
+	    					&& ( surnameTextField.getText().equals("") || ((Doctor)doctorsList.get(i)).getSurname().contains(surnameTextField.getText()) )
+	    					&& ( specialtyTextField.getText().equals("") || ((Doctor)doctorsList.get(i)).getSpecialty().contains(specialtyTextField.getText()) )
+	    					)
+	    					searchedList.add((Doctor)doctorsList.get(i));
+	    		}
 	    		
-	    		contentPane.removeAll();
-	    		contentPane.repaint();
+	    		JList jList = new JList(searchedList.toArray());
+	    		/*
+	    		 * if there is no search criteria, display all items
+	    		 */
+	    		if( firstnameTextField.getText().equals("") && surnameTextField.getText().equals("") && specialtyTextField.getText().equals("") )
+	    			jList = new JList(doctorsList.toArray());
 	    		
-	    		hide();
+	    		
+	    		scrollPane.setViewportView(jList);
+	    		jList.addMouseListener(mouseListener);
+	    		jList.setBackground(Color.WHITE);
+	    		scrollPane.repaint();
+	    		
+	    		
+	    		
+	    		
+//	    		
+//	    		EventQueue.invokeLater(new Runnable() {
+//	    			public void run() {
+//	    				try {
+//	    					PatientAddDoctorPage frame = new PatientAddDoctorPage();
+//	    					frame.setVisible(true);
+//	    				} catch (Exception e) {
+//	    					e.printStackTrace();
+//	    				}
+//	    			}
+//	    		});
+//	    		
+//	    		contentPane.removeAll();
+//	    		contentPane.repaint();
+//	    		
+//	    		hide();
 	    	
 	    	}
 	    });
 	    button.setBounds(99, 243, 99, 29);
 	    contentPane.add(button);
 	    
-	    JButton btnNewButton = new JButton("\u0628\u0627\u0632\u06AF\u0634\u062A");
+	    JButton btnNewButton = new JButton("بازگشت");
 	    btnNewButton.addActionListener(new ActionListener() {
 	    	@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {

@@ -21,6 +21,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import users.Doctor;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -90,7 +92,7 @@ public class DoctorReferPatientToProfessionalDoctorPage extends JFrame {
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
-									PatientRequestDoctorPage frame = new PatientRequestDoctorPage(new DoctorReferPatientToProfessionalDoctorPage());
+									PatientRequestDoctorPage frame = new PatientRequestDoctorPage((Doctor) o,new DoctorReferPatientToProfessionalDoctorPage());
 									frame.setVisible(true);
 								} catch (Exception e) {
 									e.printStackTrace();
@@ -166,7 +168,7 @@ public class DoctorReferPatientToProfessionalDoctorPage extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							DoctorPatientViewPage frame = new DoctorPatientViewPage();
+							DoctorViewPatientsPage frame = new DoctorViewPatientsPage();
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();

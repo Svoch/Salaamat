@@ -30,6 +30,13 @@ public abstract class User {
 		this.password = password;
 		this.address = address;
 	}
+	public User() {
+		this.firstname = null;
+		this.surname = null;
+		this.username = null;
+		this.password = null;
+		this.address = null;
+	}
 	
 	public boolean isConfirmed() { 
 		return confirmed;

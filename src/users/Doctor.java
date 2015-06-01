@@ -1,10 +1,15 @@
 package users;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
+import users.login.DoctorUserManager;
 
 /**
  * 
@@ -31,6 +36,30 @@ public class Doctor extends User {
 		super(firstname, surname, username, password, address);
 		this.specialty = specialty;
 	}
+	public Doctor() {
+		super();
+		specialty = null;
+	}
+	
+	/**
+	 * TODO handle exceptions 
+	 * @return
+	 */
+	public List getPatientsList() {
+		// TODO Auto-generated method stub
+//		ArrayList<String> list = new ArrayList<String>();
+//		for(int i=0;i<10;i++)
+//			list.add("<--> <----->");
+		
+//		ArrayList<Patient> list = new ArrayList<Patient>();
+//		for(int i=0;i<10;i++)
+//			list.add(new Patient("Khar-agha","Khar-zade","khar"+i,"passkhar"+i,"Khar-abaad,Khar-estan"));
+		
+		List list = new DoctorUserManager().getPatientsList(this);
+				
+		return list;
+	}
+
 	
 	private String specialty;
 	
@@ -67,4 +96,4 @@ public class Doctor extends User {
 	public String toString() {
 		return "Doctor "+super.toString();
 	}
-}
+	}

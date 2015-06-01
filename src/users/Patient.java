@@ -26,18 +26,21 @@ public class Patient extends User {
 	public Patient(String firstname, String surname, String username, String password, String address) {
 		super(firstname, surname, username, password, address);
 		supervisor = null;
-		supervisorName = null;
+		supervisorID = null;
 	}
 	public Patient(String firstname, String surname, String username, String password, String address, Doctor supervisor) {
 		super(firstname, surname, username, password, address);
 		this.supervisor = supervisor;
-		supervisorName = this.supervisor.toString();
+		supervisorID = this.supervisor.getID();
+	}
+	public Patient(){
+		super();
 	}
 
 	private Doctor supervisor = null;
 	private Doctor requestedSupervisor = null;
 	
-	private String supervisorName = null;
+	private Integer supervisorID = null;
 	
 	public void requestSupervisor(Doctor doctor) {
 		requestedSupervisor = doctor;
@@ -58,9 +61,9 @@ public class Patient extends User {
 	public void setSupervisor(Doctor supervisor) {
 		this.supervisor = supervisor;
 		if(supervisor != null)
-			supervisorName = supervisor.toString();
+			supervisorID = supervisor.getID();
 		else
-			supervisorName = null;
+			supervisorID = null;
 	}
 	public Doctor getRequestedSupervisor() {
 		return requestedSupervisor;
@@ -71,11 +74,11 @@ public class Patient extends User {
 	public String toString() {
 		return super.toString();
 	}
-	public String getSupervisorName() {
-		return supervisorName;
+	public int getSupervisorID() {
+		return supervisorID;
 	}
-	void setSupervisorName(String supervisorName) {
-		this.supervisorName = supervisorName;
+	void setSupervisorID(int supervisorID) {
+		this.supervisorID = supervisorID;
 	}
 
 }
