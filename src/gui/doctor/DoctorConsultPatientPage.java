@@ -93,7 +93,7 @@ public class DoctorConsultPatientPage extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							DoctorViewPatientsPage frame = new DoctorViewPatientsPage();
+							DoctorViewPatientPage frame = new DoctorViewPatientPage();
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();

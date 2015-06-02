@@ -64,6 +64,7 @@ public class DoctorMainPage extends JFrame {
 	 * Create the frame.
 	 */
 	public DoctorMainPage() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -74,7 +75,7 @@ public class DoctorMainPage extends JFrame {
 		/**
 		 * TODO fix loggedInDoctor's name
 		 */
-		JLabel label = new JLabel("<----> خوش آمدید!");
+		JLabel label = new JLabel("دکتر " + ((Doctor) new DoctorUserManager().getLoggedInUser()).getSurname() + " خوش آمدید!");
 		label.setHorizontalAlignment(SwingConstants.RIGHT);
 		label.setFont(new Font("Lucida Grande", Font.BOLD, 15));
 		label.setBounds(181, 6, 263, 25);
@@ -98,7 +99,6 @@ public class DoctorMainPage extends JFrame {
 
 				contentPane.removeAll();
 				contentPane.repaint();
-
 				hide();
 
 			}
@@ -124,7 +124,6 @@ public class DoctorMainPage extends JFrame {
 
 				contentPane.removeAll();
 				contentPane.repaint();
-
 				hide();
 
 
@@ -151,7 +150,6 @@ public class DoctorMainPage extends JFrame {
 
 				contentPane.removeAll();
 				contentPane.repaint();
-
 				hide();
 
 			}
@@ -177,7 +175,6 @@ public class DoctorMainPage extends JFrame {
 
 				contentPane.removeAll();
 				contentPane.repaint();
-
 				hide();
 
 			}
@@ -189,23 +186,17 @@ public class DoctorMainPage extends JFrame {
 			@SuppressWarnings("deprecation")
 			public void mouseClicked(MouseEvent mouseEvent) {
 
-
-				JList theList = (JList) mouseEvent.getSource();
-				List patientsList = ((Doctor) new DoctorUserManager().getLoggedInUser()).getPatientsList();
-
-				
+				JList theList = (JList) mouseEvent.getSource();				
 				
 				if (mouseEvent.getClickCount() == 2) {
 					int index = theList.locationToIndex(mouseEvent.getPoint());
 					if (index >= 0) {
 						Object o = theList.getModel().getElementAt(index);
 
-						//----------------- Add doctor selection page here
-
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
-									DoctorViewPatientsPage frame = new DoctorViewPatientsPage();
+									DoctorViewPatientPage frame = new DoctorViewPatientPage();
 									frame.setVisible(true);
 								} catch (Exception e) {
 									e.printStackTrace();
@@ -218,27 +209,22 @@ public class DoctorMainPage extends JFrame {
 
 						hide();
 
-						System.out.println("Double-clicked on: " + o.toString());
 					}
 				}
 			}
 		};
 
 
-		//String patientList[] = { "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->" };
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(225, 73, 205, 115);
 		contentPane.add(scrollPane);
 
-		List patientList = ((Doctor) new DoctorUserManager().getLoggedInUser()).getPatientsList();
-		
-//		JList jlist = new JList((ListModel) patientList);
-		
-		JList jlist = new JList(patientList.toArray());
+		List<Object> patientList = ((Doctor) new DoctorUserManager().getLoggedInUser()).getPatientsList();		
+		JList<Object> jlist = new JList<Object>(patientList.toArray());
+
 		scrollPane.setViewportView(jlist);
 		jlist.addMouseListener(mouseListener);
-		//	    contentPane.add(scrollPane1);
 		jlist.setBackground(Color.WHITE);
 		
 

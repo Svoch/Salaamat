@@ -19,8 +19,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import users.Patient;
+import users.login.IUserManager;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 /**
  * 
@@ -29,34 +33,28 @@ import java.awt.event.ActionEvent;
  */
 public class DoctorViewAllPatiensPage extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6362230250525505691L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-
-	String patientList[] = { "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->" };
+	private JTextField firstnameTextField;
+	private JTextField surnameTextField;
 
 	
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DoctorViewAllPatiensPage frame = new DoctorViewAllPatiensPage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					DoctorViewAllPatiensPage frame = new DoctorViewAllPatiensPage();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
+//
 	/**
 	 * Create the frame.
 	 */
@@ -68,15 +66,15 @@ public class DoctorViewAllPatiensPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label = new JLabel("\u0644\u06CC\u0633\u062A \u0628\u06CC\u0645\u0627\u0631\u0627\u0646");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		label.setBounds(300, 6, 144, 29);
-		contentPane.add(label);
+		JLabel titleLabel = new JLabel("\u0644\u06CC\u0633\u062A \u0628\u06CC\u0645\u0627\u0631\u0627\u0646");
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		titleLabel.setBounds(300, 6, 144, 29);
+		contentPane.add(titleLabel);
 		
 	   
 	    MouseListener mouseListener = new MouseAdapter() {
-	      @SuppressWarnings("deprecation")
+	      @SuppressWarnings({ "deprecation", "rawtypes" })
 		public void mouseClicked(MouseEvent mouseEvent) {
 	        JList theList = (JList) mouseEvent.getSource();
 	        if (mouseEvent.getClickCount() == 2) {
@@ -89,7 +87,7 @@ public class DoctorViewAllPatiensPage extends JFrame {
 	            EventQueue.invokeLater(new Runnable() {
 	    			public void run() {
 	    				try {
-	    					DoctorOtherPatientViewPage frame = new DoctorOtherPatientViewPage();
+	    					DoctorViewOtherPatientsPage frame = new DoctorViewOtherPatientsPage();
 	    					frame.setVisible(true);
 	    				} catch (Exception e) {
 	    					e.printStackTrace();
@@ -112,46 +110,79 @@ public class DoctorViewAllPatiensPage extends JFrame {
 	    scrollPane.setBounds(225, 49, 205, 190);
 	    contentPane.add(scrollPane);
 	    
-	    JList jlist = new JList(patientList);
+	    
+		
+	    ArrayList<Object> allPatientsList = new ArrayList<Object>( IUserManager.getAllPatientsList() );	    
+	    JList<Object> jlist = new JList<Object>(allPatientsList.toArray());
+	    
 	    scrollPane.setViewportView(jlist);
 	    jlist.addMouseListener(mouseListener);
-	    //	    contentPane.add(scrollPane1);
 	    jlist.setBackground(Color.WHITE);
 	    
 		
 		
-		JLabel label_1 = new JLabel("\u062C\u0633\u062A \u0648 \u062C\u0648 \u062F\u0631 \u0644\u06CC\u0633\u062A");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		label_1.setBounds(54, 13, 144, 29);
-		contentPane.add(label_1);
+		JLabel searchTitleLabel = new JLabel("جست و جو در لیست");
+		searchTitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		searchTitleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		searchTitleLabel.setBounds(54, 13, 144, 29);
+		contentPane.add(searchTitleLabel);
 		
-		JLabel label_2 = new JLabel("\u0646\u0627\u0645");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setBounds(152, 59, 61, 16);
-		contentPane.add(label_2);
+		JLabel firstnameLabel = new JLabel("نام");
+		firstnameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		firstnameLabel.setBounds(152, 59, 61, 16);
+		contentPane.add(firstnameLabel);
 		
-		JLabel label_3 = new JLabel("\u0646\u0627\u0645 \u062E\u0627\u0646\u0648\u0627\u062F\u06AF\u06CC");
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setBounds(140, 87, 73, 16);
-		contentPane.add(label_3);
+		JLabel surnameLabel = new JLabel("نام خانوادگی");
+		surnameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		surnameLabel.setBounds(140, 87, 73, 16);
+		contentPane.add(surnameLabel);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(32, 49, 108, 28);
-		contentPane.add(textField);
+		firstnameTextField = new JTextField();
+		firstnameTextField.setColumns(10);
+		firstnameTextField.setBounds(32, 49, 108, 28);
+		contentPane.add(firstnameTextField);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(32, 81, 108, 28);
-		contentPane.add(textField_1);
+		surnameTextField = new JTextField();
+		surnameTextField.setColumns(10);
+		surnameTextField.setBounds(32, 81, 108, 28);
+		contentPane.add(surnameTextField);
 		
-		JButton button = new JButton("\u062C\u0633\u062A \u0648 \u062C\u0648");
-		button.setBounds(99, 243, 99, 29);
-		contentPane.add(button);
+		JButton searchButton = new JButton("جست و جو");
+		searchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Object> searchedList = new ArrayList<Object>();
+	    		for(int i=0; i<allPatientsList.size(); i++) {
+					/*
+					 * this one seems complicated but it is simple: there is a logical equivalence between p=>q and ¬p∨q 
+					 * note that p is "textField is not empty" and q is "what textField contains is a part of search criteria"
+					 * TODO extract method for this one
+					 */
+	    			if( ( firstnameTextField.getText().equals("") || ((Patient)allPatientsList.get(i)).getFirstname().contains(firstnameTextField.getText()) )
+	    					&& ( surnameTextField.getText().equals("") || ((Patient)allPatientsList.get(i)).getSurname().contains(surnameTextField.getText()) )
+	    					)
+	    					searchedList.add((Patient)allPatientsList.get(i));
+	    		}
+	    		
+	    		JList<Object> jList = new JList<Object>(searchedList.toArray());
+	    		/*
+	    		 * if there is no search criteria, display all items
+	    		 */
+	    		if( firstnameTextField.getText().equals("") && surnameTextField.getText().equals("")  )
+	    			jList = new JList<Object>(allPatientsList.toArray());
+	    		
+	    		
+	    		scrollPane.setViewportView(jList);
+	    		jList.addMouseListener(mouseListener);
+	    		jList.setBackground(Color.WHITE);
+	    		scrollPane.repaint();
+			
+			}
+		});
+		searchButton.setBounds(99, 243, 99, 29);
+		contentPane.add(searchButton);
 		
-		JButton button_1 = new JButton("\u0628\u0627\u0632\u06AF\u0634\u062A");
-		button_1.addActionListener(new ActionListener() {
+		JButton backButton = new JButton("بازگشت");
+		backButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 			
@@ -174,8 +205,8 @@ public class DoctorViewAllPatiensPage extends JFrame {
 			
 			}
 		});
-		button_1.setBounds(6, 243, 96, 29);
-		contentPane.add(button_1);
+		backButton.setBounds(6, 243, 96, 29);
+		contentPane.add(backButton);
 	}
 
 }

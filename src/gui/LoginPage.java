@@ -1,5 +1,6 @@
 package gui;
 
+
 import gui.doctor.DoctorMainPage;
 import gui.drugstore.DrugstoreMainPage;
 import gui.patient.PatientMainPage;
@@ -28,6 +29,7 @@ import java.awt.event.ActionEvent;
 /**
  * TODO handle loggedInUser upon خروج button
  * TODO handle loggedInUser when running mid-windows
+ * TODO handle logging by username instead of login by ID
  * @author siavashnazari
  *
  */
@@ -45,6 +47,8 @@ public class LoginPage extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -68,7 +72,6 @@ public class LoginPage extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
 
 		usernameTextField = new JTextField();
 		usernameTextField.setBounds(244, 80, 134, 28);

@@ -3,6 +3,7 @@ package gui.patient;
 
 import gui.OperationSuccessfulPage;
 
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -17,6 +18,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
 import users.Doctor;
+import users.Patient;
+import users.login.PatientUserManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -138,10 +141,10 @@ public class PatientRequestDoctorPage extends JFrame {
 		AddressTextField.setBounds(21, 150, 338, 23);
 		contentPane.add(AddressTextField);
 
-		JTextField supervisorTextField = new JTextField(doctor.getSpecialty());
-		supervisorTextField.setEditable(false);
-		supervisorTextField.setBounds(99, 178, 260, 23);
-		contentPane.add(supervisorTextField);
+		JTextField specialtyTextField = new JTextField(doctor.getSpecialty());
+		specialtyTextField.setEditable(false);
+		specialtyTextField.setBounds(99, 178, 260, 23);
+		contentPane.add(specialtyTextField);
 
 
 		JLabel specialtyLabel = new JLabel("تخصص");
@@ -154,7 +157,10 @@ public class PatientRequestDoctorPage extends JFrame {
 		button_1.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
-
+				
+				((Patient) new PatientUserManager().getLoggedInUser()).requestSupervisor(doctor);
+				
+				
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {

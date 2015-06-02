@@ -152,7 +152,7 @@ public class PatientSignUpPage extends JFrame {
 								&& !passwordTextField.getText().equals("") && !addressTextField.getText().equals("") && !passwordRepeatTextField.getText().equals("") ) {
 							
 							if( passwordTextField.getText().equals(passwordRepeatTextField.getText()) ) {
-								// creating a new doctor based on given input
+								// creating a new patient based on given input
 								System.err.println(firstnameTextField.getText() + "\n" + surnameTextField.getText() + "\n" + usernameTextField.getText() + "\n" + surnameTextField.getText() + "\n" + passwordTextField.getText() + "\n" + addressTextField.getText() + "\n" + passwordRepeatTextField.getText() );
 								Patient patient = new Patient(firstnameTextField.getText(), surnameTextField.getText(), usernameTextField.getText(), passwordTextField.getText(), addressTextField.getText() );							
 								new PatientUserManager().signup( patient );
