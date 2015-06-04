@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import users.Patient;
-import users.login.PatientUserManager;
+import users.management.PatientUserManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

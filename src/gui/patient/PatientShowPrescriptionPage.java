@@ -12,6 +12,8 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
+import medical.Illness;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -86,10 +88,14 @@ public class PatientShowPrescriptionPage extends JFrame {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 			
+				
+				/**
+				 * TODO notice: deep shit here
+				 */
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							PatientSicknessDetailPage frame = new PatientSicknessDetailPage(new PatientShowPrescriptionPage());
+							PatientViewIllnessDetailPage frame = new PatientViewIllnessDetailPage(null);
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();

@@ -165,10 +165,13 @@ public class DoctorReferPatientToProfessionalDoctorPage extends JFrame {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 			
+				/**
+				 * TODO deep shit here
+				 */
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							DoctorViewPatientPage frame = new DoctorViewPatientPage();
+							DoctorViewPatientPage frame = new DoctorViewPatientPage(null);
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();

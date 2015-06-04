@@ -3,7 +3,6 @@ package gui.patient;
 
 import gui.OperationSuccessfulPage;
 
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -19,7 +18,7 @@ import javax.swing.JButton;
 
 import users.Doctor;
 import users.Patient;
-import users.login.PatientUserManager;
+import users.management.PatientUserManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -39,12 +38,6 @@ public class PatientRequestDoctorPage extends JFrame {
 	private Doctor doctor;
 	private JPanel contentPane;
 	private JFrame returnPage;
-
-
-	String doctorName = "<-->";
-	String doctorSurname = "<---->";
-	String doctorProfession = "<--->";
-	String doctorOfficeAddress = "<---------->";
 
 
 	/**
@@ -158,6 +151,10 @@ public class PatientRequestDoctorPage extends JFrame {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				
+				/**
+				 * 
+				 * TODO handle request to its own doctor bug
+				 */
 				((Patient) new PatientUserManager().getLoggedInUser()).requestSupervisor(doctor);
 				
 				

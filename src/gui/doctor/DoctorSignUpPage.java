@@ -1,7 +1,6 @@
 package gui.doctor;
 
 import gui.LoginPage;
-
 import gui.OperationSuccessfulPage;
 
 import java.awt.EventQueue;
@@ -19,7 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import users.Doctor;
-import users.login.DoctorUserManager;
+import users.management.DoctorUserManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

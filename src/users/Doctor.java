@@ -1,7 +1,6 @@
 package users;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import javax.persistence.AttributeOverride;
@@ -10,8 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import users.login.DoctorUserManager;
-import users.login.PatientUserManager;
+import users.management.DoctorUserManager;
+import users.management.PatientUserManager;
 
 /**
  * 

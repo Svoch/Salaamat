@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
 import users.Doctor;
-import users.login.DoctorUserManager;
+import users.management.DoctorUserManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

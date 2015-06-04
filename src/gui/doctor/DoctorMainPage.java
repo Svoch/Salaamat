@@ -2,6 +2,7 @@ package gui.doctor;
 
 import gui.LoginPage;
 
+
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -26,7 +27,8 @@ import java.util.List;
 import javax.swing.JScrollPane;
 
 import users.Doctor;
-import users.login.DoctorUserManager;
+import users.Patient;
+import users.management.DoctorUserManager;
 
 /**
  * 
@@ -43,22 +45,21 @@ public class DoctorMainPage extends JFrame {
 	private JPanel contentPane;
 
 
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DoctorMainPage frame = new DoctorMainPage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					DoctorMainPage frame = new DoctorMainPage();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -86,6 +87,8 @@ public class DoctorMainPage extends JFrame {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 
+				new DoctorUserManager().setLoggedInUser(null);
+				
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
@@ -140,7 +143,7 @@ public class DoctorMainPage extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							DoctorViewRequestsPage frame = new DoctorViewRequestsPage();
+							DoctorViewAllRequestsPage frame = new DoctorViewAllRequestsPage();
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -154,7 +157,7 @@ public class DoctorMainPage extends JFrame {
 
 			}
 		});
-		viewRequestsButton.setBounds(20, 97, 181, 46);
+		viewRequestsButton.setBounds(20, 112, 181, 37);
 		contentPane.add(viewRequestsButton);
 
 		JButton viewPatientsButton = new JButton("مشاهده لیست بیماران");
@@ -179,11 +182,11 @@ public class DoctorMainPage extends JFrame {
 
 			}
 		});
-		viewPatientsButton.setBounds(20, 142, 181, 46);
+		viewPatientsButton.setBounds(20, 151, 181, 37);
 		contentPane.add(viewPatientsButton);
 
 		MouseListener mouseListener = new MouseAdapter() {
-			@SuppressWarnings("deprecation")
+			@SuppressWarnings({ "deprecation", "rawtypes" })
 			public void mouseClicked(MouseEvent mouseEvent) {
 
 				JList theList = (JList) mouseEvent.getSource();				
@@ -196,7 +199,7 @@ public class DoctorMainPage extends JFrame {
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 								try {
-									DoctorViewPatientPage frame = new DoctorViewPatientPage();
+									DoctorViewPatientPage frame = new DoctorViewPatientPage((Patient) o);
 									frame.setVisible(true);
 								} catch (Exception e) {
 									e.printStackTrace();
@@ -206,7 +209,6 @@ public class DoctorMainPage extends JFrame {
 
 						contentPane.removeAll();
 						contentPane.repaint();
-
 						hide();
 
 					}
@@ -232,6 +234,10 @@ public class DoctorMainPage extends JFrame {
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		label_1.setBounds(308, 45, 117, 16);
 		contentPane.add(label_1);
+		
+		JButton reviewIllnessesButton = new JButton("بررسی بیماری‌ها");
+		reviewIllnessesButton.setBounds(20, 73, 181, 37);
+		contentPane.add(reviewIllnessesButton);
 
 	}
 }

@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import users.Patient;
-import users.login.IUserManager;
+import users.management.IUserManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -66,7 +66,7 @@ public class DoctorViewAllPatiensPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel titleLabel = new JLabel("\u0644\u06CC\u0633\u062A \u0628\u06CC\u0645\u0627\u0631\u0627\u0646");
+		JLabel titleLabel = new JLabel("لیست بیماران");
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
 		titleLabel.setBounds(300, 6, 144, 29);
@@ -82,12 +82,10 @@ public class DoctorViewAllPatiensPage extends JFrame {
 	          if (index >= 0) {
 	            Object o = theList.getModel().getElementAt(index);
 	            
-	            //----------------- Add doctor selection page here
-	            
 	            EventQueue.invokeLater(new Runnable() {
 	    			public void run() {
 	    				try {
-	    					DoctorViewOtherPatientsPage frame = new DoctorViewOtherPatientsPage();
+	    					DoctorViewOtherPatientPage frame = new DoctorViewOtherPatientPage((Patient) o);
 	    					frame.setVisible(true);
 	    				} catch (Exception e) {
 	    					e.printStackTrace();
@@ -97,10 +95,8 @@ public class DoctorViewAllPatiensPage extends JFrame {
 	            
 	            contentPane.removeAll();
 	            contentPane.repaint();
-	            
 	            hide();
 	            
-	            System.out.println("Double-clicked on: " + o.toString());
 	          }
 	        }
 	      }
@@ -199,7 +195,6 @@ public class DoctorViewAllPatiensPage extends JFrame {
 				
 				contentPane.removeAll();
 				contentPane.repaint();
-				
 				hide();
 		
 			

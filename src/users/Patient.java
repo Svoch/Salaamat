@@ -1,13 +1,17 @@
 package users;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import users.login.IUserManager;
-import users.login.PatientUserManager;
+import medical.Illness;
+import users.management.IUserManager;
+import users.management.PatientUserManager;
 
 /**
  * 
@@ -29,13 +33,16 @@ public class Patient extends User {
 	public Patient(String firstname, String surname, String username, String password, String address) {
 		super(firstname, surname, username, password, address);
 		setSupervisor(null);
+		setIllnesses(new HashSet<Illness>());
 	}
 	public Patient(String firstname, String surname, String username, String password, String address, Doctor supervisor) {
 		super(firstname, surname, username, password, address);
 		setSupervisor(supervisor);
+		setIllnesses(new HashSet<Illness>());
 	}
 	public Patient(){
 		super();
+		setIllnesses(null);
 	}
 
 	private Doctor supervisor = null;
@@ -43,12 +50,14 @@ public class Patient extends User {
 
 	private int supervisorID = 0;
 	private int requestedSupervisorID = 0;
+	
+	private Set<Illness> illnesses;
 
 	
 	public void requestSupervisor(Doctor doctor) {
 		setRequestedSupervisor(doctor);
 //		doctor.recieveApplication(this);
-		new PatientUserManager().issueRequest(this,doctor);
+		new PatientUserManager().update(this);
 	}
 
 	/**
@@ -109,7 +118,7 @@ public class Patient extends User {
 	 * @param supervisorID
 	 */
 	public void setSupervisorID(int supervisorID) {
-		if(supervisorID <= 0) {
+		if(supervisorID == 0) {
 			this.supervisorID = 0;
 			supervisor = null;
 		}
@@ -124,6 +133,16 @@ public class Patient extends User {
 			supervisorID = 0;
 		else
 			supervisorID = supervisor.getID();
+	}
+	public Set<Illness> getIllnesses() {
+		return illnesses;
+	}
+	public void setIllnesses(Set<Illness> illnesses) {
+		this.illnesses = illnesses;
+	}
+	public void addIllness(Illness illness) {
+		illnesses.add(illness);
+		new PatientUserManager().update(this);
 	}
 
 

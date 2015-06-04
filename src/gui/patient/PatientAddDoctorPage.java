@@ -2,6 +2,7 @@ package gui.patient;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,7 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import users.Doctor;
-import users.login.IUserManager;
+import users.management.IUserManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -82,7 +83,7 @@ public class PatientAddDoctorPage extends JFrame {
 
 	    
 	    MouseListener mouseListener = new MouseAdapter() {
-	      @SuppressWarnings("deprecation")
+	    @SuppressWarnings({ "deprecation", "rawtypes" })
 		public void mouseClicked(MouseEvent mouseEvent) {
 	        JList theList = (JList) mouseEvent.getSource();
 	        
@@ -102,8 +103,6 @@ public class PatientAddDoctorPage extends JFrame {
 	          int index = theList.locationToIndex(mouseEvent.getPoint());
 	          if (index >= 0) {
 	            Object o = theList.getModel().getElementAt(index);
-	            //----------------- Add doctor selection page here
-	            
 	            EventQueue.invokeLater(new Runnable() {
 	    			public void run() {
 	    				try {
@@ -130,8 +129,8 @@ public class PatientAddDoctorPage extends JFrame {
 	    contentPane.add(scrollPane);
 	    
 
-		List doctorsList = IUserManager.getAllDoctorsList();
-		JList jList = new JList(doctorsList.toArray());
+		List<Object> doctorsList = IUserManager.getAllDoctorsList();
+		JList<Object> jList = new JList<Object>(doctorsList.toArray());
 		scrollPane.setViewportView(jList);
 		jList.addMouseListener(mouseListener);
 		jList.setBackground(Color.WHITE);
@@ -193,39 +192,18 @@ public class PatientAddDoctorPage extends JFrame {
 	    					searchedList.add((Doctor)doctorsList.get(i));
 	    		}
 	    		
-	    		JList jList = new JList(searchedList.toArray());
+	    		JList<Object> jList = new JList<Object>(searchedList.toArray());
 	    		/*
 	    		 * if there is no search criteria, display all items
 	    		 */
 	    		if( firstnameTextField.getText().equals("") && surnameTextField.getText().equals("") && specialtyTextField.getText().equals("") )
-	    			jList = new JList(doctorsList.toArray());
+	    			jList = new JList<Object>(doctorsList.toArray());
 	    		
 	    		
 	    		scrollPane.setViewportView(jList);
 	    		jList.addMouseListener(mouseListener);
 	    		jList.setBackground(Color.WHITE);
 	    		scrollPane.repaint();
-	    		
-	    		
-	    		
-	    		
-//	    		
-//	    		EventQueue.invokeLater(new Runnable() {
-//	    			public void run() {
-//	    				try {
-//	    					PatientAddDoctorPage frame = new PatientAddDoctorPage();
-//	    					frame.setVisible(true);
-//	    				} catch (Exception e) {
-//	    					e.printStackTrace();
-//	    				}
-//	    			}
-//	    		});
-//	    		
-//	    		contentPane.removeAll();
-//	    		contentPane.repaint();
-//	    		
-//	    		hide();
-	    	
 	    	}
 	    });
 	    button.setBounds(99, 243, 99, 29);

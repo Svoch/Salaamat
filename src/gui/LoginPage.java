@@ -19,9 +19,10 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import users.login.DoctorUserManager;
-import users.login.DrugstoreLoginCheck;
-import users.login.PatientUserManager;
+import users.management.DoctorUserManager;
+import users.management.DrugstoreLoginCheck;
+import users.management.PatientUserManager;
+import utility.hibernate.HibernateUtility;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -48,6 +49,7 @@ public class LoginPage extends JFrame {
 	 */
 	public static void main(String[] args) {
 		
+		HibernateUtility.createSessionFactory();
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -65,7 +67,7 @@ public class LoginPage extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginPage() {
-
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -107,7 +109,7 @@ public class LoginPage extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				if( new DoctorUserManager().login(usernameTextField.getText(), passwordTextField.getText()) ) {
-					System.err.println("some loggedInDoctor is: " + new DoctorUserManager().getLoggedInUser().toString() );
+					System.err.println("loggedInDoctor is: " + new DoctorUserManager().getLoggedInUser().toString() );
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {
 							try {

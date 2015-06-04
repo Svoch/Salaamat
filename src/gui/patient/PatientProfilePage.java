@@ -2,7 +2,6 @@ package gui.patient;
 
 import java.awt.EventQueue;
 
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -19,7 +18,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
 import users.Patient;
-import users.login.PatientUserManager;
+import users.management.PatientUserManager;
 
 /**
  * 
