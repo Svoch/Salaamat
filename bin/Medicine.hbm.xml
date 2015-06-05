@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+              <!DOCTYPE hibernate-mapping PUBLIC
+              "-//Hibernate/Hibernate Mapping DTD//EN"
+              "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+              
+              <hibernate-mapping>
+              
+                <class name="medical.Medicine" table="Medicine">
+                    <id name="ID" type="int" column="ID">
+                          <generator class="increment"/>
+                    </id>                                 
+               
+                    <property name="name" column="Name" type="string"/>
+                    <property name="description" column="Description" type="string"/>
+
+
+					<set name="diagnosises" table="Medicine_Illness_Patient" fetch="select" inverse="true" >
+	            		<key column="MedicineID"/>
+	            		<many-to-many class="utility.Diagnosis">
+	            			<column name="IllnessID"/>
+	            			<column name="PatientID"/>
+	            		</many-to-many>
+	            	</set>
+	            	
+                </class>
+                
+                <class name="utility.Prescription" table="Medicine_Illness_Patient">
+					<composite-id name="ID" class="utility.Prescription">
+           				<key-property name="medicineID" column="MedicineID"/>
+						<key-property name="illnessID" column="IllnessID"/>
+						<key-property name="patientID" column="PatientID"/>
+					</composite-id>                
+					
+					
+                </class>
+                
+              </hibernate-mapping>

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+              <!DOCTYPE hibernate-mapping PUBLIC
+              "-//Hibernate/Hibernate Mapping DTD//EN"
+              "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+              
+              <hibernate-mapping>
+              
+                <class name="users.User" table="User">
+                    <id name="ID" type="int">
+                          <generator class="increment"/>
+                    </id>                                 
+               
+                    <property name="firstname" column="Firstname" type="string"/>
+                    <property name="surname" column="Surname" type="string"/>
+                    <property name="username" column="Username" type="string" unique="true"/>
+                    <property name="password" column="Password" type="string"/>
+                    <property name="address" column="Address" type="string"/>
+                </class>
+                
+                <class name="users.Doctor" table="Doctor">
+                
+                    <id name="ID" type="int">
+                          <generator class="increment"/>
+                    </id>
+                    
+                    <property name="firstname" column="Firstname" type="string"/>
+                    <property name="surname" column="Surname" type="string"/>
+                    <property name="username" column="Username" type="string" unique="true"/>
+                    <property name="password" column="Password" type="string"/>
+                    <property name="address" column="Address" type="string"/>
+                    <property name="specialty" column="Specialty" type="string"/>
+                </class>
+                
+                <class name="users.Patient" table="Patient" >
+                
+                    <id name="ID" type="int">
+                          <generator class="increment"/>
+                    </id>
+                    
+                    <property name="firstname" column="Firstname" type="string"/>
+                    <property name="surname" column="Surname" type="string"/>
+                    <property name="username" column="Username" type="string" unique="true"/>
+                    <property name="password" column="Password" type="string"/>
+                    <property name="address" column="Address" type="string"/>
+                    <property name="supervisorID" column="SupervisorID" type="int"/>
+                    <property name="requestedSupervisorID" column="RequestedSupervisorID" type="int"/>
+                    
+                    <set name="illnesses" table="Illness_Patient"  lazy="false" fetch="select" inverse="false"  cascade="all">
+           		 			<key column="PatientID"/>
+            				<many-to-many column="IllnessID" class="medical.Illness"/>
+            		</set>
+                    
+                </class>
+                
+              </hibernate-mapping>
