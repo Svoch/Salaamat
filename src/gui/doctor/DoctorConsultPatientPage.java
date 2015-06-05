@@ -13,6 +13,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import users.Patient;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -30,27 +32,33 @@ public class DoctorConsultPatientPage extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	
+	private Patient patient;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DoctorConsultPatientPage frame = new DoctorConsultPatientPage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					DoctorConsultPatientPage frame = new DoctorConsultPatientPage();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
+	 * @param p 
 	 */
-	public DoctorConsultPatientPage() {
+	public DoctorConsultPatientPage(Patient p) {
+
+		this.patient = p;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -96,7 +104,7 @@ public class DoctorConsultPatientPage extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							DoctorViewPatientPage frame = new DoctorViewPatientPage(null);
+							DoctorViewPatientPage frame = new DoctorViewPatientPage(patient);
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();

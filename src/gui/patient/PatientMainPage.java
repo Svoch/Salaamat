@@ -1,7 +1,6 @@
 package gui.patient;
 import gui.LoginPage;
 
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -15,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
 import users.Patient;
+import users.management.DoctorUserManager;
 import users.management.PatientUserManager;
 import utility.hibernate.HibernateUtility;
 
@@ -166,6 +166,9 @@ public class PatientMainPage extends JFrame {
 				/**
 				 * TODO add "Are you sure?" message
 				 */
+				
+				new DoctorUserManager().setLoggedInUser(null);
+
 				
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {

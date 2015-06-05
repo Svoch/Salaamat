@@ -9,8 +9,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import medical.Illness;
+import medical.Medicine;
+import medical.management.IMedicalEntityManager;
 import users.management.DoctorUserManager;
 import users.management.PatientUserManager;
+import utility.Diagnosis;
 
 /**
  * 
@@ -71,7 +75,16 @@ public class Doctor extends User {
 		patient.setRequestedSupervisor(null);
 		new PatientUserManager().update(patient);		
 	}
-
+	public void prescribe(Diagnosis diagnosis, Medicine medicine) {
+		diagnosis.addMedicine(medicine);
+		IMedicalEntityManager.update(diagnosis);
+	}
+	public void addIllness(Patient patient, Illness illness) {
+		patient.addIllness(illness);
+		new PatientUserManager().update(patient);
+	}
+	
+	
 	private String specialty;
 	private ArrayList<Patient> appliedPatientsList;
 
@@ -88,13 +101,6 @@ public class Doctor extends User {
 	 * @param patient
 	 */
 	public void answerDiscussion(Patient patient) {
-
-	}
-	/**
-	 * TODO implement this
-	 * @param patient
-	 */
-	public void answerSupervisionRequest(Patient patient) {
 
 	}
 

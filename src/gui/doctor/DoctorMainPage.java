@@ -87,6 +87,11 @@ public class DoctorMainPage extends JFrame {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 
+
+				/**
+				 * TODO add "Are you sure?" message
+				 */
+				
 				new DoctorUserManager().setLoggedInUser(null);
 				
 				EventQueue.invokeLater(new Runnable() {
@@ -236,6 +241,27 @@ public class DoctorMainPage extends JFrame {
 		contentPane.add(label_1);
 		
 		JButton reviewIllnessesButton = new JButton("بررسی بیماری‌ها");
+		reviewIllnessesButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
+
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							DoctorReviewIllnessesPage frame = new DoctorReviewIllnessesPage();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+
+				contentPane.removeAll();
+				contentPane.repaint();
+				hide();
+
+			}
+		});
 		reviewIllnessesButton.setBounds(20, 73, 181, 37);
 		contentPane.add(reviewIllnessesButton);
 

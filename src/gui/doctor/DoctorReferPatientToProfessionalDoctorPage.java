@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import users.Doctor;
+import users.Patient;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -44,28 +45,33 @@ public class DoctorReferPatientToProfessionalDoctorPage extends JFrame {
 
 	String professionalDoctorsList[] = { "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->", "<--> <----->" };
 
+	private Patient patient;
 
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DoctorReferPatientToProfessionalDoctorPage frame = new DoctorReferPatientToProfessionalDoctorPage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					DoctorReferPatientToProfessionalDoctorPage frame = new DoctorReferPatientToProfessionalDoctorPage();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
+	 * @param patient 
 	 */
-	public DoctorReferPatientToProfessionalDoctorPage() {
+	public DoctorReferPatientToProfessionalDoctorPage(Patient p) {
+		
+		this.patient = p;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -89,16 +95,16 @@ public class DoctorReferPatientToProfessionalDoctorPage extends JFrame {
 
 						//----------------- Add doctor selection page here
 
-						EventQueue.invokeLater(new Runnable() {
-							public void run() {
-								try {
-									PatientRequestDoctorPage frame = new PatientRequestDoctorPage((Doctor) o,new DoctorReferPatientToProfessionalDoctorPage());
-									frame.setVisible(true);
-								} catch (Exception e) {
-									e.printStackTrace();
-								}
-							}
-						});
+//						EventQueue.invokeLater(new Runnable() {
+//							public void run() {
+//								try {
+//									PatientRequestDoctorPage frame = new PatientRequestDoctorPage((Doctor) o,new DoctorReferPatientToProfessionalDoctorPage());
+//									frame.setVisible(true);
+//								} catch (Exception e) {
+//									e.printStackTrace();
+//								}
+//							}
+//						});
 
 						contentPane.removeAll();
 						contentPane.repaint();
@@ -171,7 +177,7 @@ public class DoctorReferPatientToProfessionalDoctorPage extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							DoctorViewPatientPage frame = new DoctorViewPatientPage(null);
+							DoctorViewPatientPage frame = new DoctorViewPatientPage(patient);
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();

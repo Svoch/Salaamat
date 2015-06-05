@@ -1,8 +1,10 @@
 package gui.patient;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
@@ -13,9 +15,22 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
 import medical.Illness;
+import medical.Medicine;
+import medical.management.IMedicalEntityManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+
+import users.Patient;
+import users.management.PatientUserManager;
+import utility.Diagnosis;
 
 /**
  * 
@@ -30,26 +45,35 @@ public class PatientShowPrescriptionPage extends JFrame {
 	private static final long serialVersionUID = 2284242895511452785L;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PatientShowPrescriptionPage frame = new PatientShowPrescriptionPage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private Illness illness;
+	private JTextField medicineNameTextField;
+	private JTextField prescriptionDateTextField;
+	private JTextField medicineDescriptionTextField;
+
+	
+//	/**
+//	 * Launch the application.
+//	 */
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					PatientShowPrescriptionPage frame = new PatientShowPrescriptionPage();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public PatientShowPrescriptionPage() {
+	public PatientShowPrescriptionPage(Illness i) {
+		
+		this.illness = i; 
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -57,34 +81,19 @@ public class PatientShowPrescriptionPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label = new JLabel("\u0645\u0634\u0627\u0647\u062F\u0647 \u0646\u0633\u062E\u0647");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		label.setBounds(306, 6, 144, 29);
-		contentPane.add(label);
+		JLabel titleLabel = new JLabel("مشاهده نسخه");
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		titleLabel.setBounds(306, 6, 144, 29);
+		contentPane.add(titleLabel);
 		
-		JLabel label_1 = new JLabel("\u062F\u0627\u0631\u0648\u0647\u0627");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(383, 66, 61, 16);
-		contentPane.add(label_1);
+		JLabel medicinesListLabel = new JLabel("لیست داروها:");
+		medicinesListLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		medicinesListLabel.setBounds(231, 66, 213, 26);
+		contentPane.add(medicinesListLabel);
 		
-		JLabel lblNewLabel = new JLabel("<------>");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(137, 66, 230, 100);
-		contentPane.add(lblNewLabel);
-		
-		JLabel label_2 = new JLabel("\u0622\u0632\u0645\u0627\u06CC\u0634\u200C\u0647\u0627");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setBounds(389, 180, 61, 16);
-		contentPane.add(label_2);
-		
-		JLabel label_3 = new JLabel("<------>");
-		label_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		label_3.setBounds(137, 172, 230, 76);
-		contentPane.add(label_3);
-		
-		JButton button = new JButton("\u0628\u0627\u0632\u06AF\u0634\u062A");
-		button.addActionListener(new ActionListener() {
+		JButton backButton = new JButton("بازگشت");
+		backButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -95,7 +104,7 @@ public class PatientShowPrescriptionPage extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							PatientViewIllnessDetailPage frame = new PatientViewIllnessDetailPage(null);
+							PatientViewIllnessDetailPage frame = new PatientViewIllnessDetailPage(illness);
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -110,8 +119,75 @@ public class PatientShowPrescriptionPage extends JFrame {
 				
 			}
 		});
-		button.setBounds(6, 243, 117, 29);
-		contentPane.add(button);
-	}
+		backButton.setBounds(6, 243, 117, 29);
+		contentPane.add(backButton);
+		
+		MouseListener medicinesMouseListener = new MouseAdapter() {
+			@SuppressWarnings("rawtypes")
+			public void mouseClicked(MouseEvent mouseEvent) {
+				JList theList = (JList) mouseEvent.getSource();
+				if (mouseEvent.getClickCount() == 1) {
+					int index = theList.locationToIndex(mouseEvent.getPoint());
+					if (index >= 0) {
+						Object o = theList.getModel().getElementAt(index);
+						medicineNameTextField.setText(((Medicine) o).getName());
+						medicineDescriptionTextField.setText(((Medicine) o).getDescription());
+						/**
+						 * TODO add date 
+						 */
+					}
+				}
+			}
+		};
 
+
+		int patientID = ((Patient) new PatientUserManager().getLoggedInUser()).getID();
+		int illnessID = illness.getID();
+		Diagnosis diagnosis = (Diagnosis) IMedicalEntityManager.getDiagnosis(patientID, illnessID);
+		ArrayList<Object> allMedicinesList = new ArrayList<Object>( diagnosis.getMedicines() );	    
+
+
+		JScrollPane medicinesScrollPane = new JScrollPane();
+		medicinesScrollPane.setBounds(231, 66, 140, 68);
+		contentPane.add(medicinesScrollPane);
+		JList<Object> allMedicinesJList = new JList<Object>(allMedicinesList.toArray());
+		medicinesScrollPane.setViewportView(allMedicinesJList);
+		allMedicinesJList.addMouseListener(medicinesMouseListener);
+		allMedicinesJList.setBackground(Color.WHITE);
+		
+		
+		
+		JLabel medicineNameLabel = new JLabel("نام دارو");
+		medicineNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		medicineNameLabel.setBounds(168, 66, 61, 26);
+		contentPane.add(medicineNameLabel);
+		
+		JLabel prescriptionDateLabel = new JLabel("زمان تجویز");
+		prescriptionDateLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		prescriptionDateLabel.setBounds(156, 105, 73, 26);
+		contentPane.add(prescriptionDateLabel);
+		
+		medicineNameTextField = new JTextField();
+		medicineNameTextField.setEditable(false);
+		medicineNameTextField.setColumns(10);
+		medicineNameTextField.setBounds(16, 65, 140, 28);
+		contentPane.add(medicineNameTextField);
+		
+		prescriptionDateTextField = new JTextField();
+		prescriptionDateTextField.setEditable(false);
+		prescriptionDateTextField.setColumns(10);
+		prescriptionDateTextField.setBounds(48, 104, 108, 28);
+		contentPane.add(prescriptionDateTextField);
+		
+		JLabel medicineDescriptionLabel = new JLabel("توضیحات");
+		medicineDescriptionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		medicineDescriptionLabel.setBounds(389, 147, 61, 26);
+		contentPane.add(medicineDescriptionLabel);
+		
+		medicineDescriptionTextField = new JTextField();
+		medicineDescriptionTextField.setEditable(false);
+		medicineDescriptionTextField.setColumns(10);
+		medicineDescriptionTextField.setBounds(16, 146, 355, 85);
+		contentPane.add(medicineDescriptionTextField);
+	}
 }

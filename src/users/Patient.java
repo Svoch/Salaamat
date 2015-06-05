@@ -134,6 +134,11 @@ public class Patient extends User {
 		else
 			supervisorID = supervisor.getID();
 	}
+	
+	/**
+	 * TODO handle methods in wrong classes
+	 * @return
+	 */
 	public Set<Illness> getIllnesses() {
 		return illnesses;
 	}
@@ -142,7 +147,6 @@ public class Patient extends User {
 	}
 	public void addIllness(Illness illness) {
 		illnesses.add(illness);
-		new PatientUserManager().update(this);
 	}
 
 
