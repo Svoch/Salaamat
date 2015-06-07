@@ -54,7 +54,7 @@ public class DoctorViewAllPatiensPage extends JFrame {
 //			}
 //		});
 //	}
-//
+
 	/**
 	 * Create the frame.
 	 */

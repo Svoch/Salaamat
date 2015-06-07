@@ -38,11 +38,11 @@ public abstract class User {
 		this.address = null;
 	}
 	
-	public boolean isConfirmed() { 
+	public boolean getConfirmed() { 
 		return confirmed;
 	}
-	public void confirm() {
-		confirmed = true;
+	public void setConfirmed(boolean confirmed) {
+		this.confirmed = confirmed;
 	}
 	public String getFirstname() {
 		return firstname;

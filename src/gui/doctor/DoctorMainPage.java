@@ -76,11 +76,11 @@ public class DoctorMainPage extends JFrame {
 		/**
 		 * TODO fix loggedInDoctor's name
 		 */
-		JLabel label = new JLabel("دکتر " + ((Doctor) new DoctorUserManager().getLoggedInUser()).getSurname() + " خوش آمدید!");
-		label.setHorizontalAlignment(SwingConstants.RIGHT);
-		label.setFont(new Font("Lucida Grande", Font.BOLD, 15));
-		label.setBounds(181, 6, 263, 25);
-		contentPane.add(label);
+		JLabel titleLabel = new JLabel("دکتر " + ((Doctor) new DoctorUserManager().getLoggedInUser()).getSurname() + " خوش آمدید!");
+		titleLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		titleLabel.setFont(new Font("Lucida Grande", Font.BOLD, 15));
+		titleLabel.setBounds(181, 6, 263, 25);
+		contentPane.add(titleLabel);
 
 		JButton exitButton = new JButton("خروج");
 		exitButton.addActionListener(new ActionListener() {
@@ -235,10 +235,10 @@ public class DoctorMainPage extends JFrame {
 		jlist.setBackground(Color.WHITE);
 		
 
-		JLabel label_1 = new JLabel("لیست بیمار‌های شما:");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(308, 45, 117, 16);
-		contentPane.add(label_1);
+		JLabel patientsList = new JLabel("لیست بیمار‌های شما:");
+		patientsList.setHorizontalAlignment(SwingConstants.CENTER);
+		patientsList.setBounds(308, 45, 117, 16);
+		contentPane.add(patientsList);
 		
 		JButton reviewIllnessesButton = new JButton("بررسی بیماری‌ها");
 		reviewIllnessesButton.addActionListener(new ActionListener() {

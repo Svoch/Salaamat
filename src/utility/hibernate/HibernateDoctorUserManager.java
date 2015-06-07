@@ -158,7 +158,8 @@ public class HibernateDoctorUserManager implements IHibernateUseManager {
 					+"username is: " + p.getUsername() + "\n"
 					+"password is: " + p.getPassword() + "\n"
 					+"adress is: " + p.getAddress() + "\n"
-					+"supervisorID is: " + p.getSupervisorID() 
+					+"supervisorID is: " + p.getSupervisorID() + "\n"
+					+"confirmed is: " + p.getConfirmed() + "\n --------------------------------------"
 					);
 			i++;
 		}
