@@ -27,6 +27,12 @@ public class HibernateUtility {
 				.addResource("Illness.hbm.xml");
 			 configuration
 			 	.addResource("Medicine.hbm.xml");
+			 configuration
+			 	.addResource("BodyState.hbm.xml");
+			 configuration
+			 	.addResource("PhysicalActivity.hbm.xml");
+			 configuration
+			 	.addResource("Consultation.hbm.xml");
 			 
 			 configuration.configure();
 			 

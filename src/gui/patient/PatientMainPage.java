@@ -260,7 +260,7 @@ public class PatientMainPage extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							PatientSubmitPhysicalActivityPage frame = new PatientSubmitPhysicalActivityPage();
+							PatientAddPhysicalActivityPage frame = new PatientAddPhysicalActivityPage();
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();

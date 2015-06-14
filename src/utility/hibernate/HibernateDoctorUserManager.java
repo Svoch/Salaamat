@@ -13,7 +13,7 @@ import users.User;
 import users.management.DoctorUserManager;
 
 
-public class HibernateDoctorUserManager implements IHibernateUseManager {
+public class HibernateDoctorUserManager implements IHibernateUserManager {
 
 	/**
 	 * TODO check uniqueness of username
@@ -140,6 +140,29 @@ public class HibernateDoctorUserManager implements IHibernateUseManager {
 		return list;
 	}
 	
+	public List<Object> getPatientsWithQuestionsList(Doctor doctor) {
+		BasicConfigurator.configure();
+
+//		System.out.println("here I am... I am here to fetch some patients!");
+
+		SessionFactory sessionFactory = HibernateUtility.createSessionFactory();
+		Session session = sessionFactory.getCurrentSession();
+		/**
+		 * TODO understand what the hell is wrong with Transaction; it should be instantiated though not being used!
+		 */
+		@SuppressWarnings("unused")
+		Transaction tx = session.beginTransaction();
+		
+		@SuppressWarnings("unchecked")
+		List<Object> list = session.createQuery(
+			    "from users.Patient where ID in (select ID.patientID from utility.Consultation where ID.doctorID = " + doctor.getID() + " )")
+			    .list();	
+
+		session.close();
+		return list;
+	}
+
+	
 	
 	
 	
@@ -149,7 +172,7 @@ public class HibernateDoctorUserManager implements IHibernateUseManager {
 	 * some local tests here...
 	 */
 	public static void main(String[] args) {
-		List<Object> patientsList = (new HibernateDoctorUserManager()).getPatientsList(((Doctor)IHibernateUseManager.getDoctor(1)));
+		List<Object> patientsList = (new HibernateDoctorUserManager()).getPatientsList(((Doctor)IHibernateUserManager.getDoctor(1)));
 		System.out.println("I am here!");
 		int i = 0;
 		for(Object o : patientsList) {
@@ -166,6 +189,7 @@ public class HibernateDoctorUserManager implements IHibernateUseManager {
 		System.out.println("I am here too!");
 	}
 
+	
 	
 
 }

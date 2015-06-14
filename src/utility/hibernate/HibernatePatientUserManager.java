@@ -1,17 +1,21 @@
 package utility.hibernate;
 
+import java.util.List;
+
+
+
+
 import org.apache.log4j.BasicConfigurator;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import users.Doctor;
 import users.Patient;
 import users.User;
 import users.management.PatientUserManager;
 
-public class HibernatePatientUserManager implements IHibernateUseManager {
+public class HibernatePatientUserManager implements IHibernateUserManager {
 
 	@Override
 	public boolean login(String username, String password) {
@@ -69,25 +73,7 @@ public class HibernatePatientUserManager implements IHibernateUseManager {
         		+ patient.getSurname()+" is successfully added to your database");
 	}
 
-	public void issueRequest(Patient patient, Doctor doctor) {
-		
-		BasicConfigurator.configure();
-		
-		SessionFactory sessionFactory = HibernateUtility.createSessionFactory();
-    
-        Session session = sessionFactory.getCurrentSession();
-        Transaction tx = session.beginTransaction();
-        
-        //System.err.println("updating patient to be " + patient.toString() + " with requested supervisor as " + patient.getRequestedSupervisor());
-   	
-    	session.update(patient);                
-        tx.commit();
-
-        System.out.println 
-        		("updating patient to be " + patient.toString() + " with requested supervisor as " + patient.getRequestedSupervisor());
-
-	}
-
+	
 	@Override
 	public void update(User patient) {
 
@@ -103,6 +89,49 @@ public class HibernatePatientUserManager implements IHibernateUseManager {
 
 			System.out.println 
 					("updating patient to be " + patient.toString() );
+
+	}
+
+	public List<Object> getBodyStates(Patient patient) {
+		
+		BasicConfigurator.configure();
+
+		SessionFactory sessionFactory = HibernateUtility.createSessionFactory();
+		Session session = sessionFactory.getCurrentSession();
+		/**
+		 * TODO understand what the hell is wrong with Transaction; it should be instantiated though not being used!
+		 */
+		@SuppressWarnings("unused")
+		Transaction tx = session.beginTransaction();
+		
+		@SuppressWarnings("unchecked")
+		List<Object> list = session.createQuery(
+			    "from medical.BodyState where patientID = " + patient.getID())
+			    .list();	
+		
+		session.close();
+		return list;
+	}
+
+	public List<Object> getPhysicalActivities(Patient patient) {
+
+		BasicConfigurator.configure();
+
+		SessionFactory sessionFactory = HibernateUtility.createSessionFactory();
+		Session session = sessionFactory.getCurrentSession();
+		/**
+		 * TODO understand what the hell is wrong with Transaction; it should be instantiated though not being used!
+		 */
+		@SuppressWarnings("unused")
+		Transaction tx = session.beginTransaction();
+		
+		@SuppressWarnings("unchecked")
+		List<Object> list = session.createQuery(
+			    "from medical.PhysicalActivity where ID.patientID = " + patient.getID())
+			    .list();	
+		
+		session.close();
+		return list;
 
 	}
 

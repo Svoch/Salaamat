@@ -42,16 +42,28 @@ public class Illness {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
+	/**
+	 * TODO bad for coupling
+	 * @return
+	 */
 	public Set<Patient> getPatients() {
 		return patients;
 	}
 	public void setPatients(Set<Patient> patients) {
 		this.patients = patients;
 	}
-	
 	public void addPatient(Patient patient) {
 		patients.add(patient);
 	}
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	
 	@Override
 	public String toString() {
@@ -120,12 +132,8 @@ public class Illness {
 		System.err.println("nothing to see here...");
 		
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	
+	
 	
 	
 }

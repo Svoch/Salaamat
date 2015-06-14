@@ -119,16 +119,16 @@ public class DoctorViewPatientPage extends JFrame {
 		backButton.setBounds(6, 243, 81, 29);
 		contentPane.add(backButton);
 		
-		JButton consultButton = new JButton("ارتباط با بیمار");
-		consultButton.addActionListener(new ActionListener() {
+		JButton reviewMedicalRecordsButton = new JButton("مشاهده سوابق جسمانی");
+		reviewMedicalRecordsButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 			
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							DoctorConsultPatientPage frame = new DoctorConsultPatientPage(patient);
-							frame.setVisible(true);
+//							DoctorConsultPatientPage frame = new DoctorConsultPatientPage(patient);
+//							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -142,8 +142,8 @@ public class DoctorViewPatientPage extends JFrame {
 			
 			}
 		});
-		consultButton.setBounds(69, 113, 138, 30);
-		contentPane.add(consultButton);
+		reviewMedicalRecordsButton.setBounds(57, 113, 150, 30);
+		contentPane.add(reviewMedicalRecordsButton);
 		
 		
 		MouseListener mouseListener = new MouseAdapter() {
@@ -163,7 +163,7 @@ public class DoctorViewPatientPage extends JFrame {
 		            EventQueue.invokeLater(new Runnable() {
 		    			public void run() {
 		    				try {
-		    					DoctorViewIllnessDetailPage frame = new DoctorViewIllnessDetailPage((Illness) o);
+		    					DoctorViewIllnessOfPatientPage frame = new DoctorViewIllnessOfPatientPage(patient,(Illness) o);
 		    					frame.setVisible(true);
 		    				} catch (Exception e) {
 		    					e.printStackTrace();
@@ -229,7 +229,7 @@ public class DoctorViewPatientPage extends JFrame {
 				
 			}
 		});
-		referToSpecialistButton.setBounds(69, 138, 138, 30);
+		referToSpecialistButton.setBounds(57, 215, 150, 30);
 		contentPane.add(referToSpecialistButton);
 		
 		JButton prescribeButton = new JButton("تجویز نسخه");
@@ -255,7 +255,7 @@ public class DoctorViewPatientPage extends JFrame {
 			
 			}
 		});
-		prescribeButton.setBounds(69, 163, 138, 30);
+		prescribeButton.setBounds(57, 163, 150, 30);
 		contentPane.add(prescribeButton);
 		
 		JButton addIllnessButton = new JButton("ثبت بیماری");
@@ -280,7 +280,7 @@ public class DoctorViewPatientPage extends JFrame {
 				
 			}
 		});
-		addIllnessButton.setBounds(69, 188, 138, 30);
+		addIllnessButton.setBounds(57, 188, 150, 30);
 		contentPane.add(addIllnessButton);
 		
 		firstnameTextField = new JTextField(patient.getFirstname());
@@ -294,7 +294,28 @@ public class DoctorViewPatientPage extends JFrame {
 		contentPane.add(surnameTextField);
 		
 		JButton addBodyStateButton = new JButton("ثبت وضیعت جسمانی");
-		addBodyStateButton.setBounds(69, 213, 138, 30);
+		addBodyStateButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
+			
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							DoctorAddBodyStateToPatientPage frame = new DoctorAddBodyStateToPatientPage(patient);
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			
+				contentPane.removeAll();
+				contentPane.repaint();
+				hide();
+			
+			}
+		});
+		addBodyStateButton.setBounds(57, 138, 148, 30);
 		contentPane.add(addBodyStateButton);
 	}
 }

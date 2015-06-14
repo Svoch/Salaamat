@@ -154,10 +154,11 @@ public class adminMainPage extends JFrame {
 
 	    ArrayList<Object> allPatientsList = new ArrayList<Object>( IUserManager.getAllPatientsList() );	    
 	    
+	    /*
 	    for(int i=0; i<allPatientsList.size(); i++)
 	    	if( ((Patient) allPatientsList.get(i)).getConfirmed() )
 	    		allPatientsList.remove(i);
-	    	
+	    */
 
 	    JList<Object> jlist = new JList<Object>(allPatientsList.toArray());
 
@@ -186,7 +187,7 @@ public class adminMainPage extends JFrame {
 		jlist.setBackground(Color.WHITE);
 		
 
-		JLabel patientsList = new JLabel("لیست کاربران جدید سامانه:");
+		JLabel patientsList = new JLabel("لیست کاربران سامانه:");
 		patientsList.setHorizontalAlignment(SwingConstants.RIGHT);
 		patientsList.setBounds(225, 45, 200, 16);
 		contentPane.add(patientsList);

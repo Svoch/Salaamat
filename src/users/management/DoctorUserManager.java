@@ -3,10 +3,11 @@ package users.management;
 
 import java.util.List;
 
-
 import users.Doctor;
+import users.Patient;
 import users.User;
 import utility.hibernate.HibernateDoctorUserManager;
+import utility.hibernate.IHibernateUserManager;
 
 /**
  * @author siavashnazari
@@ -70,6 +71,19 @@ public class DoctorUserManager implements IUserManager {
 		return new HibernateDoctorUserManager().getPatientApplicantsList(doctor);
 	
 	}
+	public List<Object> getPatientsWithQuestionsList(Doctor doctor) {
+
+		return new HibernateDoctorUserManager().getPatientsWithQuestionsList(doctor);
+		
+	}
+	
+
+	public void answerConsultation(Doctor doctor, Patient patient, String question, String answer) {
+		
+		IHibernateUserManager.makeConultation(doctor, patient, question, answer);
+		
+	}
+
 	
 
 }

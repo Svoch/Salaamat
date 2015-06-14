@@ -2,13 +2,13 @@ package utility.hibernate;
 
 import java.util.List;
 
-
 import org.apache.log4j.BasicConfigurator;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import utility.Diagnosis;
+import medical.BodyState;
 import medical.Illness;
 import medical.Medicine;
 
@@ -185,6 +185,23 @@ public interface IHibernateMedicalEntityManager {
 
     	session.close();
 		return (Object) medicine;
+		
+	}
+
+	public static void addBodyState(BodyState bodyState) {
+		
+		BasicConfigurator.configure();
+
+//		System.out.println("here I am... I am here to fetch an Illness!");
+
+		SessionFactory sessionFactory = HibernateUtility.createSessionFactory();
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		
+		session.saveOrUpdate(bodyState);
+		tx.commit();
+		
+		System.out.println("BodyState " + bodyState.toString() + " has been added to BodyState_Patient table");
 		
 	}
 

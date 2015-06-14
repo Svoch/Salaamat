@@ -44,29 +44,12 @@ public class PatientShowPrescriptionPage extends JFrame {
 	 */
 	private static final long serialVersionUID = 2284242895511452785L;
 	private JPanel contentPane;
-
-	private Illness illness;
 	private JTextField medicineNameTextField;
 	private JTextField prescriptionDateTextField;
 	private JTextField medicineDescriptionTextField;
-
 	
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					PatientShowPrescriptionPage frame = new PatientShowPrescriptionPage();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
+	private Illness illness;
+	
 	/**
 	 * Create the frame.
 	 */

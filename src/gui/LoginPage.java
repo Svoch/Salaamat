@@ -142,14 +142,7 @@ public class LoginPage extends JFrame {
 				if( new PatientUserManager().login(usernameTextField.getText(), passwordTextField.getText()) ) {
 					
 					if( new PatientUserManager().getLoggedInUser().getConfirmed() ) {
-						
-						try {
-							throw new Exception();
-						} catch (Exception e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						
+				
 						EventQueue.invokeLater(new Runnable() {
 							public void run() {
 

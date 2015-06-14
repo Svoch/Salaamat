@@ -51,6 +51,7 @@ public class Doctor extends User {
 
 	/**
 	 * TODO handle exceptions 
+	 * TODO handle return type
 	 * @return
 	 */
 	public List<Object> getPatientsList() {
@@ -59,12 +60,19 @@ public class Doctor extends User {
 	}
 	/**
 	 * TODO handle exceptions 
+	 * TODO handle return type
 	 * @return
 	 */
 	public List<Object> getPatientApplicantsList() {
 		List<Object> list = new DoctorUserManager().getPatientApplicantsList(this);
 		return list;
 	}
+	public List<Object> getPatientsWithQuestionsList() {
+		List<Object> list = new DoctorUserManager().getPatientsWithQuestionsList(this);
+		return list;
+	}
+	
+	
 
 	public void approveRequest(Patient patient) {
 		patient.setRequestedSupervisor(null);
@@ -83,9 +91,16 @@ public class Doctor extends User {
 		patient.addIllness(illness);
 		new PatientUserManager().update(patient);
 	}
+	public void asnwerConsultation(Patient patient, String question, String answer) {
+		new DoctorUserManager().answerConsultation(this,patient,question,answer);
+	}
+	
 	
 	
 	private String specialty;
+	/**
+	 * TODO remove this field and whatever belongs to it...
+	 */
 	private ArrayList<Patient> appliedPatientsList;
 
 	/**
@@ -127,7 +142,6 @@ public class Doctor extends User {
 	public void setAppliedPatientsList(ArrayList<Patient> appliedPatientsList) {
 		this.appliedPatientsList = appliedPatientsList;
 	}
-	
 	
 	
 }

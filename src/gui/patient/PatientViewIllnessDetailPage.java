@@ -38,9 +38,9 @@ public class PatientViewIllnessDetailPage extends JFrame {
 	private JPanel contentPane;
 	private JTextField illnessTitleTextField;
 	private JTextField illnessDescriptionTextField;
-	
-	private Illness illness;
 	private JTextField diagnosisDateTextField;
+
+	private Illness illness;
 
 	
 //	/**

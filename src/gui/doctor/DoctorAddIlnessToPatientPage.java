@@ -117,6 +117,7 @@ public class DoctorAddIlnessToPatientPage extends JFrame {
 		contentPane.add(illnessDiagnosisDate);
 
 		illnessTitleTextField = new JTextField();
+		illnessTitleTextField.setEditable(false);
 		illnessTitleTextField.setColumns(10);
 		illnessTitleTextField.setBounds(120, 166, 251, 28);
 		contentPane.add(illnessTitleTextField);

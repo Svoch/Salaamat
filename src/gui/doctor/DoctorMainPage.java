@@ -2,7 +2,6 @@ package gui.doctor;
 
 import gui.LoginPage;
 
-
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -43,23 +42,6 @@ public class DoctorMainPage extends JFrame {
 	private static final long serialVersionUID = 102L;
 
 	private JPanel contentPane;
-
-
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					DoctorMainPage frame = new DoctorMainPage();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the frame.
@@ -224,7 +206,7 @@ public class DoctorMainPage extends JFrame {
 
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(225, 73, 205, 115);
+		scrollPane.setBounds(225, 73, 205, 154);
 		contentPane.add(scrollPane);
 
 		List<Object> patientList = ((Doctor) new DoctorUserManager().getLoggedInUser()).getPatientsList();		
@@ -264,6 +246,31 @@ public class DoctorMainPage extends JFrame {
 		});
 		reviewIllnessesButton.setBounds(20, 73, 181, 37);
 		contentPane.add(reviewIllnessesButton);
+		
+		JButton reviewConsultationsPage = new JButton("مشاوره با بیماران");
+		reviewConsultationsPage.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
+				
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							DoctorConsultPatientPage frame = new DoctorConsultPatientPage();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+
+				contentPane.removeAll();
+				contentPane.repaint();
+				hide();
+				
+			}
+		});
+		reviewConsultationsPage.setBounds(20, 190, 181, 37);
+		contentPane.add(reviewConsultationsPage);
 
 	}
 }

@@ -3,7 +3,7 @@ package users.management;
 import java.util.List;
 
 import users.User;
-import utility.hibernate.IHibernateUseManager;
+import utility.hibernate.IHibernateUserManager;
 
 public interface IUserManager {
 	
@@ -21,16 +21,19 @@ public interface IUserManager {
 	public void setLoggedInUser(User user);
 	
 	public static List<Object> getAllDoctorsList() {
-		return IHibernateUseManager.getAllDoctorsList();
+		return IHibernateUserManager.getAllDoctorsList();
 	}
 	public static List<Object> getAllPatientsList() {
-		return IHibernateUseManager.getAllPatientsList();
+		return IHibernateUserManager.getAllPatientsList();
 	}
 	public static Object getDoctor(int ID) {
-		return IHibernateUseManager.getDoctor(ID);
+		return IHibernateUserManager.getDoctor(ID);
 	}
 	public static Object getPatient(int ID) {
-		return IHibernateUseManager.getPatient(ID);
+		return IHibernateUserManager.getPatient(ID);
+	}
+	public static Object getConsultation(int doctorID, int patientID) {
+		return IHibernateUserManager.getConsultation(doctorID,patientID);
 	}
 	
 }

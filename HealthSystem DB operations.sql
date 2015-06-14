@@ -15,6 +15,19 @@ Create Table Medicine_Illness_Patient ( PatientID int, IllnessID int, MedicineID
 
 alter table Patient add column Confirmed boolean;
 
+Create Table BodyState_Patient ( BodyStateType nvarchar(50) , PatientID int , date int , measurement int , Primary Key (BodyStateType , PatientID , date) );
+
+Create Table Doctor_Patient ( DoctorID int , PatientID int , Question nvarchar(100) , Answer nvarchar(100) , Primary Key (DoctorID , PatientID) );
+
+Create Table PhysicalActivity_Patient ( PatientID int , date int , measurement int , Primary Key (PatientID , date) );
 
 
 
+
+
+
+
+____________________________________________________________________________________________________________________________________________________________
+
+
+kill all sql processes command: mysqladmin processlist -u root -p  |  awk '$2 ~ /^[0-9]/ {print "KILL "$2";"}' |  mysql -u root -p 

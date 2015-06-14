@@ -5,35 +5,21 @@
               
               <hibernate-mapping>
               
-                <class name="medical.Illness" table="Illness">
-                    <id name="ID" type="int" column="ID">
-                          <generator class="increment"/>
-                    </id>                                 
+                <class name="medical.BodyState" table="BodyState_Patient">
+                    <composite-id name="ID" class="medical.BodyStateID">
+                        <key-property name="bodyStateType" column="BodyStateType">
+                        	<type name="org.hibernate.type.EnumType">
+                        		<param name="enumClass">medical.BodyStateType</param>
+								<param name="type">12</param>
+								<param name="useNamed">true</param>
+                        	</type>
+                        </key-property>
+                        <key-property name="date" column="Date"/>
+                        <key-property name="patientID" column="PatientID"/>
+                    </composite-id>                            
                
-                    <property name="title" column="Title" type="string"/>
-                    <property name="description" column="Description" type="string"/>
-
-					<set name="patients" table="Illness_Patient" fetch="select" inverse="true" >
-	            		<key column="IllnessID"/>
-	            		<many-to-many column="PatientID" class="users.Patient"/>
-	            	</set>
+                    <property name="measurement" column="Measurement" type="int"/>
 	            	
-                </class>
-                
-                <class name="utility.Diagnosis" table="Illness_Patient">
-					<composite-id name="ID" class="utility.Diagnosis">
-						<key-property name="illnessID" column="IllnessID"/>
-						<key-property name="patientID" column="PatientID"/>
-					</composite-id>                
-					
-		        <set name="medicines" table="Medicine_Illness_Patient"  lazy="false" fetch="select" inverse="false"  cascade="merge">
-                    <key> 
-                    <column name="IllnessID"/>
-                    <column name="PatientID"/>
-                    </key>
-                    <many-to-many column="MedicineID" class="medical.Medicine"/>
-                </set>
-					
                 </class>
                 
               </hibernate-mapping>

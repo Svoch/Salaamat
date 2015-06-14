@@ -197,7 +197,7 @@ public class PatientMedicalHistoryPage extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							PatientHealthHistoryPage frame = new PatientHealthHistoryPage();
+							PatientBodyStatesPage frame = new PatientBodyStatesPage();
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
