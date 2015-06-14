@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+              <!DOCTYPE hibernate-mapping PUBLIC
+              "-//Hibernate/Hibernate Mapping DTD//EN"
+              "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+              
+              <hibernate-mapping>
+              
+                <class name="utility.Consultation" table="Doctor_Patient">
+                    <composite-id name="ID" class="utility.ConsultationID">
+                        <key-property name="doctorID" column="DoctorID"/>
+                        <key-property name="patientID" column="PatientID"/>
+                    </composite-id>                            
+               
+                    <property name="question" column="Question" type="string"/>
+                    <property name="answer" column="Answer" type="string"/>
+	            	
+                </class>
+                
+              </hibernate-mapping>

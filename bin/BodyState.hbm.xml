@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+              <!DOCTYPE hibernate-mapping PUBLIC
+              "-//Hibernate/Hibernate Mapping DTD//EN"
+              "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+              
+              <hibernate-mapping>
+              
+                <class name="medical.BodyState" table="BodyState_Patient">
+                    <composite-id name="ID" class="medical.BodyStateID">
+                        <key-property name="bodyStateType" column="BodyStateType">
+                        	<type name="org.hibernate.type.EnumType">
+                        		<param name="enumClass">medical.BodyStateType</param>
+								<param name="type">12</param>
+								<param name="useNamed">true</param>
+                        	</type>
+                        </key-property>
+                        <key-property name="date" column="Date"/>
+                        <key-property name="patientID" column="PatientID"/>
+                    </composite-id>                            
+               
+                    <property name="measurement" column="Measurement" type="int"/>
+	            	
+                </class>
+                
+              </hibernate-mapping>

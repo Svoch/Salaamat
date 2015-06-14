@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+              <!DOCTYPE hibernate-mapping PUBLIC
+              "-//Hibernate/Hibernate Mapping DTD//EN"
+              "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+              
+              <hibernate-mapping>
+              
+                <class name="medical.PhysicalActivity" table="PhysicalActivity_Patient">
+                    <composite-id name="ID" class="medical.PhysicalActivityID">
+                        <key-property name="patientID" column="PatientID"/>
+                        <key-property name="date" column="Date"/>
+                    </composite-id>                            
+               
+                    <property name="measurement" column="Measurement" type="int"/>
+                
+                </class>
+                
+              </hibernate-mapping>
