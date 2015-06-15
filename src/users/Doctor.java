@@ -1,6 +1,5 @@
 package users;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.AttributeOverride;
@@ -36,17 +35,17 @@ public class Doctor extends User {
 	public Doctor(String firstname, String surname, String username, String password, String address) {
 		super(firstname, surname, username, password, address);
 		specialty = null;
-		appliedPatientsList = new ArrayList<Patient>();
+//		appliedPatientsList = new ArrayList<Patient>();
 	}
 	public Doctor(String firstname, String surname, String username, String password, String address, String specialty) {
 		super(firstname, surname, username, password, address);
 		this.specialty = specialty;
-		appliedPatientsList = new ArrayList<Patient>();
+//		appliedPatientsList = new ArrayList<Patient>();
 	}
 	public Doctor() {
 		super();
 		specialty = null;
-		appliedPatientsList = new ArrayList<Patient>();
+//		appliedPatientsList = new ArrayList<Patient>();
 	}
 
 	/**
@@ -101,7 +100,7 @@ public class Doctor extends User {
 	/**
 	 * TODO remove this field and whatever belongs to it...
 	 */
-	private ArrayList<Patient> appliedPatientsList;
+//	private ArrayList<Patient> appliedPatientsList;
 
 	/**
 	 * TODO implement this
@@ -130,18 +129,22 @@ public class Doctor extends User {
 	public String toString() {
 		return "Doctor "+super.toString();
 	}
+	@Override
+	public boolean equals(Object obj) {
+		return ((Doctor) obj).getID()==getID();
+	}
 	
-	/**
-	 * TODO find a better name for this method
-	 * @param patient
-	 */
-	public void recieveApplication(Patient patient) {
-		appliedPatientsList.add(patient);
-	}
-	@Deprecated
-	public void setAppliedPatientsList(ArrayList<Patient> appliedPatientsList) {
-		this.appliedPatientsList = appliedPatientsList;
-	}
+//	/**
+//	 * TODO find a better name for this method
+//	 * @param patient
+//	 */
+//	public void recieveApplication(Patient patient) {
+//		appliedPatientsList.add(patient);
+//	}
+//	@Deprecated
+//	public void setAppliedPatientsList(ArrayList<Patient> appliedPatientsList) {
+//		this.appliedPatientsList = appliedPatientsList;
+//	}
 	
 	
 }

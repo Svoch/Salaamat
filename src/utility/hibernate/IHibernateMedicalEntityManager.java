@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import utility.Diagnosis;
+import utility.Prescription;
 import medical.BodyState;
 import medical.Illness;
 import medical.Medicine;
@@ -203,6 +204,27 @@ public interface IHibernateMedicalEntityManager {
 		
 		System.out.println("BodyState " + bodyState.toString() + " has been added to BodyState_Patient table");
 		
+	}
+
+	public static List<Object> getAllPrescriptions() {
+		BasicConfigurator.configure();
+
+//		System.out.println("here I am... I am here to fetch all Illnesses!");
+
+		SessionFactory sessionFactory = HibernateUtility.createSessionFactory();
+		Session session = sessionFactory.getCurrentSession();
+		/**
+		 * TODO understand what the hell is wrong with Transaction; it should be instantiated though not being used!
+		 */
+		@SuppressWarnings("unused")
+		Transaction tx = session.beginTransaction();
+
+		@SuppressWarnings("unchecked")
+		List<Object> list = session.createCriteria(Prescription.class).list();
+
+		session.close();
+		return list;
+
 	}
 
 	

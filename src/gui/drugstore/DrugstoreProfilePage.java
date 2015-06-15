@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
@@ -11,6 +12,9 @@ import java.awt.Font;
 
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+
+import users.Drugstore;
+import users.management.DrugstoreUserManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -27,22 +31,9 @@ public class DrugstoreProfilePage extends JFrame {
 	 */
 	private static final long serialVersionUID = -4967096620186500474L;
 	private JPanel contentPane;
+	
+	private Drugstore patient = (Drugstore) new DrugstoreUserManager().getLoggedInUser();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DrugstoreProfilePage frame = new DrugstoreProfilePage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -55,29 +46,29 @@ public class DrugstoreProfilePage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label = new JLabel("\u0645\u0634\u062E\u0635\u0627\u062A \u062F\u0627\u0631\u0648\u062E\u0627\u0646\u0647\n");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		label.setBounds(333, 6, 111, 29);
-		contentPane.add(label);
+		JLabel titleLabel = new JLabel("مشخصات داروخانه\n");
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		titleLabel.setBounds(333, 6, 111, 29);
+		contentPane.add(titleLabel);
 		
-		JLabel label_1 = new JLabel("\u0646\u0627\u0645");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(383, 66, 61, 16);
-		contentPane.add(label_1);
+		JLabel nameLabel = new JLabel("نام");
+		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		nameLabel.setBounds(383, 66, 61, 23);
+		contentPane.add(nameLabel);
 		
-		JLabel label_2 = new JLabel("\u0646\u0627\u0645 \u062E\u0627\u0646\u0648\u0627\u062F\u06AF\u06CC");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setBounds(371, 94, 73, 16);
-		contentPane.add(label_2);
+		JLabel certificateLabel = new JLabel("شماره پروانه");
+		certificateLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		certificateLabel.setBounds(371, 94, 73, 23);
+		contentPane.add(certificateLabel);
 		
-		JLabel label_3 = new JLabel("\u0646\u0634\u0627\u0646\u06CC");
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setBounds(383, 150, 61, 16);
-		contentPane.add(label_3);
+		JLabel addressLabel = new JLabel("نشانی");
+		addressLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		addressLabel.setBounds(383, 150, 61, 23);
+		contentPane.add(addressLabel);
 		
-		JButton button = new JButton("\u0628\u0627\u0632\u06AF\u0634\u062A");
-		button.addActionListener(new ActionListener() {
+		JButton backButton = new JButton("بازکشت");
+		backButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -94,28 +85,30 @@ public class DrugstoreProfilePage extends JFrame {
 				
 				contentPane.removeAll();
 				contentPane.repaint();
-				
 				hide();
 				
 			}
 		});
-		button.setBounds(21, 220, 81, 29);
-		contentPane.add(button);
+		backButton.setBounds(21, 220, 81, 29);
+		contentPane.add(backButton);
 		
-		JLabel label_4 = new JLabel("<-->");
-		label_4.setBounds(298, 66, 61, 16);
-		contentPane.add(label_4);
+		JTextField nameTextField = new JTextField(patient.getFirstname());
+		nameTextField.setEditable(false);
+		nameTextField.setBounds(173, 66, 186, 23);
+		contentPane.add(nameTextField);
 		
-		JLabel label_5 = new JLabel("<-->");
-		label_5.setBounds(298, 94, 61, 16);
-		contentPane.add(label_5);
+		JTextField certificateTextField = new JTextField(patient.getSurname());
+		certificateTextField.setEditable(false);
+		certificateTextField.setBounds(173, 94, 186, 23);
+		contentPane.add(certificateTextField);
 		
-		JLabel label_6 = new JLabel("<----->");
-		label_6.setBounds(199, 150, 160, 16);
-		contentPane.add(label_6);
+		JTextField AddressTextField = new JTextField(patient.getAddress());
+		AddressTextField.setEditable(false);
+		AddressTextField.setBounds(21, 150, 338, 23);
+		contentPane.add(AddressTextField);
 		
-		JButton button_1 = new JButton("\u0648\u06CC\u0631\u0627\u06CC\u0634");
-		button_1.addActionListener(new ActionListener() {
+		JButton editButton = new JButton("ویرایش");
+		editButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -132,13 +125,13 @@ public class DrugstoreProfilePage extends JFrame {
 				
 				contentPane.removeAll();
 				contentPane.repaint();
-				
 				hide();
 			
 			}
 		});
-		button_1.setBounds(99, 220, 81, 29);
-		contentPane.add(button_1);
+		editButton.setBounds(99, 220, 81, 29);
+		contentPane.add(editButton);
+		
 	}
 
 }

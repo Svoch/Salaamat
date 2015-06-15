@@ -11,6 +11,9 @@ import javax.persistence.Table;
  * This is a dummy class, only exists so that contents of Medicine_Illness table can be accessible
  * So basically this class belongs to utility package; she does no "defining" job
  * 
+ * 
+ * IMPORTANT: In order to get (and probably set) values for illnessID and patientID use getID() then so called methods.
+ * 
  * TODO think of possibility of placing this class in or in a sub-package of medical package
  * 
  * TODO I assume as professor Rouhani would say, Date should be part of this entity's primary key
@@ -34,13 +37,12 @@ public class Prescription implements Serializable {
 
 	@Id
 	private Diagnosis diagnosisID;
-
 	private Prescription ID;
 	
 	public Prescription(){
 		
 	}
-	
+
 	public Diagnosis getDiagnosisID() {
 		return diagnosisID;
 	}
@@ -54,19 +56,6 @@ public class Prescription implements Serializable {
 		this.medicineID = medicineID;
 	}
 	
-	public int getPatientID() {
-		return patientID;
-	}
-
-	public void setPatientID(int patientID) {
-		this.patientID = patientID;
-	}
-	public int getIllnessID() {
-		return illnessID;
-	}
-	public void setIllnessID(int illnessID) {
-		this.illnessID = illnessID;
-	}
 	public Prescription getID() {
 		return ID;
 	}
@@ -74,26 +63,37 @@ public class Prescription implements Serializable {
 		this.ID = iD;
 		this.medicineID = iD.medicineID;
 		this.diagnosisID = iD.diagnosisID;
-//		this.illnessID = diagnosisID.getIllnessID();
-//		this.patientID = diagnosisID.getPatientID();
 	}
+
 	
 	@Override
 	public String toString() {
-		return "Diagnosis with ID " + diagnosisID + " has Medicine with medicineID " + medicineID ;
+		Diagnosis diagnosis = new Diagnosis();
+		diagnosis.setIllnessID(ID.illnessID);
+		diagnosis.setPatientID(ID.patientID);
+		return "Diagnosis (" + diagnosis + ") has Medicine with medicineID " + medicineID ;
 	}
-	
-	/**
-	 * TODO if equality check is necessary, you may need to implement this
-	 */
 	@Override
 	public boolean equals(Object obj) {
-		return super.equals(obj);
+		return ((Prescription) obj).getID().equals(ID);
 	}
 	
+
+	public int getPatientID() {
+		return patientID;
+	}
+	public int getIllnessID() {
+		return illnessID;
+	}
+	public void setPatientID(int patientID) {
+		this.patientID = patientID;
+	}
+	public void setIllnessID(int illnessID) {
+		this.illnessID = illnessID;
+	}
 	
-	public static void main(String[] args) {
-		
+//	public static void main(String[] args) {
+//		
 //		BasicConfigurator.configure();
 //
 //		SessionFactory sessionFactory = HibernateUtility.createSessionFactory();
@@ -145,9 +145,8 @@ public class Prescription implements Serializable {
 //		
 //		tx.commit();
 //
-		System.err.println("nothing to see here...");
-		
-		
-	}
+//		System.err.println("nothing to see here...");
+//		
+//	}
 
 }

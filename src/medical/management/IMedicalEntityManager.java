@@ -36,6 +36,9 @@ public interface IMedicalEntityManager {
 	public static void addBodyState(BodyState bodyState) {
 		IHibernateMedicalEntityManager.addBodyState(bodyState);
 	}
+	public static List<Object> getAllPrescriptions() {
+		return IHibernateMedicalEntityManager.getAllPrescriptions();
+	}
 	
 //	public static List<Object> getAllBodyStateTypes() {
 //		return BodyState.getAllBodyStateTypes();

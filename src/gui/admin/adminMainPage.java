@@ -3,6 +3,7 @@ package gui.admin;
 
 import gui.LoginPage;
 
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -25,9 +26,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import users.User;
-import users.Patient;
+import users.Admin;
+import users.management.AdminUserManager;
 import users.management.IUserManager;
-import users.management.PatientUserManager;
 
 public class adminMainPage extends JFrame {
 
@@ -112,16 +113,11 @@ public class adminMainPage extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				if(selectedUser!=null) {
-					selectedUser.setConfirmed(true);
-					/**
-					 * TODO
-					 * 1) Does it need to be generalized for all Users?
-					 * 2) It is a little bit hard-coded and... dirty, but I...
-					 * 
-					 */
-					new PatientUserManager().update((Patient)selectedUser);
-					JOptionPane.showMessageDialog(null, "کاربر انتخاب شده تأیید شد." );
 					
+					( (Admin) new AdminUserManager().getLoggedInUser() ).confirmRegistration(selectedUser);
+
+					JOptionPane.showMessageDialog(null, "کاربر انتخاب شده تأیید شد." );
+
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {
 							try {

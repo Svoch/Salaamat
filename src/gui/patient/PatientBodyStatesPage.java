@@ -42,24 +42,6 @@ public class PatientBodyStatesPage extends JFrame {
 	private JTextField endDateTextField;
 	private JTextField selectedBodyStateTextField;
 
-	
-
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					PatientBodyStatesPage frame = new PatientBodyStatesPage();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
 	/**
 	 * Create the frame.
 	 */

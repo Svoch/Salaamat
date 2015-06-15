@@ -124,7 +124,13 @@ public class PatientConsultDoctorPage extends JFrame {
 	    scrollPane.setBounds(125, 51, 205, 61);
 	    contentPane.add(scrollPane);
 	    
-		List<Object> doctorsList = IUserManager.getAllDoctorsList();
+	    /**
+	     * 
+	     */
+//		List<Object> doctorsList = IUserManager.getAllDoctorsList();
+		List<Object> doctorsList = new PatientUserManager().getConsultingDoctorsList( ((Patient) new PatientUserManager().getLoggedInUser()) );
+//		List<Object> doctorsList = consultList;
+		
 	    JList<Object> jList = new JList<Object>(doctorsList.toArray());
 	    scrollPane.setViewportView(jList);
 	    jList.addMouseListener(mouseListener);

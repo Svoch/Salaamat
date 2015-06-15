@@ -92,6 +92,11 @@ public class PatientUserManager implements IUserManager {
 		IHibernateUserManager.addPhysicalActivity(patient,measurement,date);
 	}
 
+	public List<Object> getConsultingDoctorsList(Patient patient) {
+		List<Object> list = new HibernatePatientUserManager().getConsultingDoctorsList(patient);
+		return list;
+	}
+
 	
 
 }

@@ -172,8 +172,8 @@ public class PatientAddDoctorPage extends JFrame {
 	    specialtyTextField.setBounds(32, 109, 108, 28);
 	    contentPane.add(specialtyTextField);
 	    
-	    JButton button = new JButton("جست و جو");
-	    button.addActionListener(new ActionListener() {
+	    JButton searchButton = new JButton("جست و جو");
+	    searchButton.addActionListener(new ActionListener() {
 	    	
 	    	public void actionPerformed(ActionEvent arg0) {
 	    	
@@ -206,8 +206,8 @@ public class PatientAddDoctorPage extends JFrame {
 	    		scrollPane.repaint();
 	    	}
 	    });
-	    button.setBounds(99, 243, 99, 29);
-	    contentPane.add(button);
+	    searchButton.setBounds(99, 243, 99, 29);
+	    contentPane.add(searchButton);
 	    
 	    JButton btnNewButton = new JButton("بازگشت");
 	    btnNewButton.addActionListener(new ActionListener() {

@@ -1,6 +1,7 @@
 package gui.doctor;
 
 import gui.LoginPage;
+
 import gui.OperationSuccessfulPage;
 
 import java.awt.EventQueue;
@@ -22,6 +23,7 @@ import users.management.DoctorUserManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 
 /**
@@ -41,8 +43,8 @@ public class DoctorSignUpPage extends JFrame {
 	private JTextField specialtyTextField;
 	private JTextField addressTextField;
 	private JTextField usernameTextField;
-	private JTextField passwordTextField;
-	private JTextField passwordRepeatTextField;
+	private JPasswordField passwordTextField;
+	private JPasswordField passwordRepeatTextField;
 
 	/**
 	 * Launch the application.
@@ -132,7 +134,7 @@ public class DoctorSignUpPage extends JFrame {
 		contentPane.add(usernameTextField);
 		usernameTextField.setColumns(10);
 
-		passwordTextField = new JTextField();
+		passwordTextField = new JPasswordField();
 		passwordTextField.setColumns(10);
 		passwordTextField.setBounds(21, 88, 96, 28);
 		contentPane.add(passwordTextField);
@@ -142,7 +144,7 @@ public class DoctorSignUpPage extends JFrame {
 		label_7.setBounds(129, 122, 71, 16);
 		contentPane.add(label_7);
 
-		passwordRepeatTextField = new JTextField();
+		passwordRepeatTextField = new JPasswordField();
 		passwordRepeatTextField.setColumns(10);
 		passwordRepeatTextField.setBounds(21, 116, 96, 28);
 		contentPane.add(passwordRepeatTextField);
@@ -168,11 +170,6 @@ public class DoctorSignUpPage extends JFrame {
 								&& !passwordRepeatTextField.getText().equals("") ) {
 							
 							if( passwordTextField.getText().equals(passwordRepeatTextField.getText()) ) {
-								// creating a new doctor based on given input
-								System.err.println("here I am madafaka!");
-								System.err.println(firstnameTextField.getText() + "\n" + surnameTextField.getText() + "\n" + usernameTextField.getText() + "\n" + surnameTextField.getText() + "\n" + passwordTextField.getText() + "\n" + addressTextField.getText() + "\n" + specialtyTextField.getText() + "\n" + passwordRepeatTextField.getText() );
-								if(firstnameTextField.getText().equals(""))
-									System.err.println("fuck fuck fuck");
 								Doctor doctor = new Doctor(firstnameTextField.getText(), surnameTextField.getText(), usernameTextField.getText(), passwordTextField.getText(), addressTextField.getText(), specialtyTextField.getText());							
 								new DoctorUserManager().signup( doctor );
 								try {
@@ -199,7 +196,32 @@ public class DoctorSignUpPage extends JFrame {
 
 			}
 		});
-		submitButton.setBounds(21, 220, 117, 29);
+		submitButton.setBounds(97, 220, 117, 29);
 		contentPane.add(submitButton);
+		
+		JButton backButton = new JButton("بازکشت");
+		backButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent arg0) {
+			
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							DoctorMainPage frame = new DoctorMainPage();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				
+				contentPane.removeAll();
+				contentPane.repaint();
+				hide();
+				
+			}
+		});
+		backButton.setBounds(21, 220, 81, 29);
+		contentPane.add(backButton);
 	}
 }

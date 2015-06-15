@@ -2,9 +2,6 @@ package utility.hibernate;
 
 import java.util.List;
 
-
-
-
 import org.apache.log4j.BasicConfigurator;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
@@ -133,6 +130,31 @@ public class HibernatePatientUserManager implements IHibernateUserManager {
 		session.close();
 		return list;
 
+	}
+
+	public List<Object> getConsultingDoctorsList(Patient patient) {
+
+		BasicConfigurator.configure();
+
+		SessionFactory sessionFactory = HibernateUtility.createSessionFactory();
+		Session session = sessionFactory.getCurrentSession();
+		/**
+		 * TODO understand what the hell is wrong with Transaction; it should be instantiated though not being used!
+		 */
+		@SuppressWarnings("unused")
+		Transaction tx = session.beginTransaction();
+		
+		@SuppressWarnings("unchecked")
+		List<Object> list = session.createQuery(
+			    "from users.Doctor where ID in (select ID.doctorID from utility.Consultation where ID.patientID = " + patient.getID() + " )")
+			    .list();	
+
+		if(patient.getSupervisor()!=null && !list.contains((Object) patient.getSupervisor()))
+				list.add(patient.getSupervisor());
+				
+		session.close();
+		return list;
+	
 	}
 
 }

@@ -55,4 +55,18 @@
                     
                 </class>
                 
+                <class name="users.Drugstore" table="Drugstore" >
+                
+                    <id name="ID" type="int">
+                          <generator class="increment"/>
+                    </id>
+                    
+                    <property name="firstname" column="Name" type="string"/>
+                    <property name="surname" column="Certificate" type="string"/>
+                    <property name="username" column="Username" type="string" unique="true"/>
+                    <property name="password" column="Password" type="string"/>
+                    <property name="address" column="Address" type="string"/>
+                    
+                </class>
+                
               </hibernate-mapping>

@@ -13,7 +13,7 @@ Create Table Medicine ( ID int, Name nvarchar(50) , Description nvarchar(100) , 
 
 Create Table Medicine_Illness_Patient ( PatientID int, IllnessID int, MedicineID int , Primary Key (PatientID , IllnessID , MedicineID) , FOREIGN KEY (MedicineID) REFERENCES Medicine (ID)  , FOREIGN KEY (PatientID , IllnessID)  REFERENCES Illness_Patient (PatientID , IllnessID)  );
 
-alter table Patient add column Confirmed boolean;
+Alter Table Patient add column Confirmed boolean;
 
 Create Table BodyState_Patient ( BodyStateType nvarchar(50) , PatientID int , date int , measurement int , Primary Key (BodyStateType , PatientID , date) );
 
@@ -21,7 +21,7 @@ Create Table Doctor_Patient ( DoctorID int , PatientID int , Question nvarchar(1
 
 Create Table PhysicalActivity_Patient ( PatientID int , date int , measurement int , Primary Key (PatientID , date) );
 
-
+Create Table Drugstore ( ID int, Name nvarchar(50) , Certificate nvarchar(50) , Username nvarchar(50), Password nvarchar(50), Address nvarchar(50), Primary Key (ID)  ) ; 
 
 
 

@@ -1,5 +1,6 @@
 package gui.patient;
 import gui.LoginPage;
+
 import gui.OperationSuccessfulPage;
 
 import java.awt.EventQueue;
@@ -21,6 +22,7 @@ import users.management.PatientUserManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 /**
  * 
@@ -38,8 +40,8 @@ public class PatientSignUpPage extends JFrame {
 	private JTextField surnameTextField;
 	private JTextField addressTextField;
 	private JTextField usernameTextField;
-	private JTextField passwordTextField;
-	private JTextField passwordRepeatTextField;
+	private JPasswordField passwordTextField;
+	private JPasswordField passwordRepeatTextField;
 
 	/**
 	 * Launch the application.
@@ -119,7 +121,7 @@ public class PatientSignUpPage extends JFrame {
 		usernameTextField.setBounds(21, 60, 96, 28);
 		contentPane.add(usernameTextField);
 		
-		passwordTextField = new JTextField();
+		passwordTextField = new JPasswordField();
 		passwordTextField.setColumns(10);
 		passwordTextField.setBounds(21, 88, 96, 28);
 		contentPane.add(passwordTextField);
@@ -129,7 +131,7 @@ public class PatientSignUpPage extends JFrame {
 		label_7.setBounds(129, 122, 71, 16);
 		contentPane.add(label_7);
 		
-		passwordRepeatTextField = new JTextField();
+		passwordRepeatTextField = new JPasswordField();
 		passwordRepeatTextField.setColumns(10);
 		passwordRepeatTextField.setBounds(21, 116, 96, 28);
 		contentPane.add(passwordRepeatTextField);
@@ -179,8 +181,33 @@ public class PatientSignUpPage extends JFrame {
 				
 			}
 		});
-		button.setBounds(21, 220, 117, 29);
+		button.setBounds(97, 220, 117, 29);
 		contentPane.add(button);
+		
+		JButton backButton = new JButton("بازکشت");
+		backButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent arg0) {
+			
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							PatientMainPage frame = new PatientMainPage();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				
+				contentPane.removeAll();
+				contentPane.repaint();
+				hide();
+				
+			}
+		});
+		backButton.setBounds(21, 220, 81, 29);
+		contentPane.add(backButton);
 	}
 
 }

@@ -30,7 +30,6 @@ import users.management.PatientUserManager;
 	@AttributeOverride(name="password", column=@Column(name="Password")),
 	@AttributeOverride(name="address", column=@Column(name="Address")),
 })
-
 public class Patient extends User {
 
 	public Patient(String firstname, String surname, String username, String password, String address) {
@@ -84,6 +83,11 @@ public class Patient extends User {
 	public String toString() {
 		return super.toString();
 	}
+	@Override
+	public boolean equals(Object obj) {
+		return ((Patient) obj).getID()==getID();
+	}
+	
 
 	public Doctor getRequestedSupervisor() {
 		return requestedSupervisor;

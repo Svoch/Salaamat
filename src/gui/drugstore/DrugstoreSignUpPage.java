@@ -11,12 +11,17 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import users.Drugstore;
+import users.management.DoctorUserManager;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 /**
  * 
@@ -30,33 +35,24 @@ public class DrugstoreSignUpPage extends JFrame {
 	 */
 	private static final long serialVersionUID = 5L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField nameTextField;
+	private JTextField certificateNumberTextField;
+	private JTextField addressTextField;
+	private JTextField usernameTextField;
+	private JPasswordField passwordTextField;
+	private JPasswordField passwordRepeatTextField;
+//	
+//	private JTextField firstnameTextField;
+//	private JTextField surnameTextField;
+//	private JTextField specialtyTextField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DrugstoreSignUpPage frame = new DrugstoreSignUpPage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
 	public DrugstoreSignUpPage() {
+		
+	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -64,81 +60,131 @@ public class DrugstoreSignUpPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label = new JLabel("\u062B\u0628\u062A \u0646\u0627\u0645 \u062F\u0627\u0631\u0648\u062E\u0627\u0646\u0647\n");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
-		label.setBounds(333, 6, 111, 29);
-		contentPane.add(label);
+		JLabel titleLabel = new JLabel("ثبت نام داروخانه\n");
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		titleLabel.setBounds(333, 6, 111, 29);
+		contentPane.add(titleLabel);
 		
-		JLabel label_1 = new JLabel("\u0646\u0627\u0645");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(383, 66, 61, 16);
-		contentPane.add(label_1);
+		JLabel nameLabel = new JLabel("نام");
+		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		nameLabel.setBounds(383, 66, 61, 16);
+		contentPane.add(nameLabel);
 		
-		JLabel label_2 = new JLabel("\u0634\u0645\u0627\u0631\u0647 \u067E\u0631\u0648\u0627\u0646\u0647");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setBounds(371, 94, 73, 16);
-		contentPane.add(label_2);
+		JLabel certificateNumberLabel = new JLabel("شماره پروانه");
+		certificateNumberLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		certificateNumberLabel.setBounds(371, 94, 73, 16);
+		contentPane.add(certificateNumberLabel);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(225, 60, 134, 28);
-		contentPane.add(textField);
+		nameTextField = new JTextField();
+		nameTextField.setColumns(10);
+		nameTextField.setBounds(225, 60, 134, 28);
+		contentPane.add(nameTextField);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(225, 88, 134, 28);
-		contentPane.add(textField_1);
+		certificateNumberTextField = new JTextField();
+		certificateNumberTextField.setColumns(10);
+		certificateNumberTextField.setBounds(225, 88, 134, 28);
+		contentPane.add(certificateNumberTextField);
 		
-		JLabel label_3 = new JLabel("\u0646\u0634\u0627\u0646\u06CC");
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setBounds(383, 150, 61, 16);
-		contentPane.add(label_3);
+		JLabel addressLabel = new JLabel("نشانی");
+		addressLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		addressLabel.setBounds(383, 150, 61, 16);
+		contentPane.add(addressLabel);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(212, 144, 147, 28);
-		contentPane.add(textField_2);
+		addressTextField = new JTextField();
+		addressTextField.setColumns(10);
+		addressTextField.setBounds(212, 144, 147, 28);
+		contentPane.add(addressTextField);
 		
-		JLabel label_4 = new JLabel("\u06AF\u0630\u0631\u0648\u0627\u0698\u0647");
-		label_4.setHorizontalAlignment(SwingConstants.CENTER);
-		label_4.setBounds(129, 94, 71, 16);
-		contentPane.add(label_4);
+		JLabel passwordLabel = new JLabel("گذرواژه");
+		passwordLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		passwordLabel.setBounds(129, 94, 71, 16);
+		contentPane.add(passwordLabel);
 		
-		JLabel label_5 = new JLabel("\u0646\u0627\u0645 \u06A9\u0627\u0631\u0628\u0631\u06CC");
-		label_5.setHorizontalAlignment(SwingConstants.CENTER);
-		label_5.setBounds(129, 66, 71, 16);
-		contentPane.add(label_5);
+		JLabel usernameLabel = new JLabel("نام کاربری");
+		usernameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		usernameLabel.setBounds(129, 66, 71, 16);
+		contentPane.add(usernameLabel);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(21, 60, 96, 28);
-		contentPane.add(textField_3);
+		usernameTextField = new JTextField();
+		usernameTextField.setColumns(10);
+		usernameTextField.setBounds(21, 60, 96, 28);
+		contentPane.add(usernameTextField);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(21, 88, 96, 28);
-		contentPane.add(textField_4);
+		passwordTextField = new JPasswordField();
+		passwordTextField.setColumns(10);
+		passwordTextField.setBounds(21, 88, 96, 28);
+		contentPane.add(passwordTextField);
 		
-		JLabel label_6 = new JLabel("\u062A\u06A9\u0631\u0627\u0631 \u06AF\u0630\u0631\u0648\u0627\u0698\u0647");
-		label_6.setHorizontalAlignment(SwingConstants.CENTER);
-		label_6.setBounds(129, 122, 71, 16);
-		contentPane.add(label_6);
+		JLabel passwordRepeatLabel = new JLabel("تکرار گذرواژه");
+		passwordRepeatLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		passwordRepeatLabel.setBounds(129, 122, 71, 16);
+		contentPane.add(passwordRepeatLabel);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(21, 116, 96, 28);
-		contentPane.add(textField_5);
+		passwordRepeatTextField = new JPasswordField();
+		passwordRepeatTextField.setColumns(10);
+		passwordRepeatTextField.setBounds(21, 116, 96, 28);
+		contentPane.add(passwordRepeatTextField);
 		
-		JButton button = new JButton("\u062B\u0628\u062A \u0627\u0637\u0644\u0627\u0639\u0627\u062A");
-		button.addActionListener(new ActionListener() {
+		JButton submitButton = new JButton("ثبت اطلاعات");
+		submitButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent arg0) {
+
+				/**
+				 * TODO confirm that fields are not NUll
+				 * TODO decide whether to make signup() in DoctorUserManager a static method or not.
+				 * TODO extract method for checking operations
+				 * TODO there is a state where not all fields are entered also passwords do not match, what should be done?
+				 */
+				//				UserManager.save( new Doctor(firstname.getText(), surname.getText(), username.getText(), password.getText(), address.getText(), specialty.getText()) );
+				//				new DoctorUserManager().signup(  new Doctor(firstname.getText(), surname.getText(), username.getText(), password.getText(), address.getText(), specialty.getText()) );
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+
+						if( !nameTextField.getText().equals("") && !certificateNumberTextField.getText().equals("") && !usernameTextField.getText().equals("")
+								&& !passwordTextField.getText().equals("") && !addressTextField.getText().equals("") && !passwordRepeatTextField.getText().equals("") ) {
+							
+							if( passwordTextField.getText().equals(passwordRepeatTextField.getText()) ) {
+								// creating a new doctor based on given input
+								Drugstore drugstore = new Drugstore(nameTextField.getText(), certificateNumberTextField.getText(), usernameTextField.getText(), passwordTextField.getText(), addressTextField.getText() );							
+								new DoctorUserManager().signup( drugstore );
+								try {
+									OperationSuccessfulPage frame = new OperationSuccessfulPage(new LoginPage());
+									frame.setVisible(true);
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
+								contentPane.removeAll();
+								contentPane.repaint();
+								hide();
+							}
+							else 
+								JOptionPane.showMessageDialog(null, "گذرواژه وارد شده و تکرار آن یکسان نیستند.");
+						}
+
+						else {
+							JOptionPane.showMessageDialog(null, "لطفاً همه‌ی اطلاعات را وارد نمایید.");
+						}
+					}
+				});
+
+				
+
+			}
+		});
+		submitButton.setBounds(97, 220, 117, 29);
+		contentPane.add(submitButton);
+		
+		JButton backButton = new JButton("بازکشت");
+		backButton.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 			
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							OperationSuccessfulPage frame = new OperationSuccessfulPage(new LoginPage());
+							DrugstoreMainPage frame = new DrugstoreMainPage();
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -149,12 +195,11 @@ public class DrugstoreSignUpPage extends JFrame {
 				contentPane.removeAll();
 				contentPane.repaint();
 				hide();
-
 				
 			}
 		});
-		button.setBounds(21, 220, 117, 29);
-		contentPane.add(button);
+		backButton.setBounds(21, 220, 81, 29);
+		contentPane.add(backButton);
 	}
-
+		
 }

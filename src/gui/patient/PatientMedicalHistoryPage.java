@@ -45,23 +45,6 @@ public class PatientMedicalHistoryPage extends JFrame {
 	private JTextField startDateTextField;
 	private JTextField endDateTextField;
 
-
-//	/**
-//	 * Launch the application.
-//	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					PatientMedicalHistoryPage frame = new PatientMedicalHistoryPage();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
 	/**
 	 * Create the frame.
 	 */
