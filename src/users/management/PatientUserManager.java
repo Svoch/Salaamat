@@ -88,8 +88,8 @@ public class PatientUserManager implements IUserManager {
 		IHibernateUserManager.makeConultation(doctor,patient,question,null);
 	}
 
-	public static void addPhysicalActivity(Patient patient, int measurement, int date) {
-		IHibernateUserManager.addPhysicalActivity(patient,measurement,date);
+	public static void addPhysicalActivity(Patient patient, int type, int measurement, int date) {
+		IHibernateUserManager.addPhysicalActivity(patient,type, measurement,date);
 	}
 
 	public List<Object> getConsultingDoctorsList(Patient patient) {

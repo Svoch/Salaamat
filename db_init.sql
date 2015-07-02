@@ -24,13 +24,6 @@ Create Table Doctor_Patient ( DoctorID int , PatientID int , Question nvarchar(1
 
 Create Table PhysicalActivity_Patient ( PatientID int , date int , measurement int , Primary Key (PatientID , date) );
 
-Create Table Drugstore ( ID int, Name nvarchar(50) , Certificate nvarchar(50) , Username nvarchar(50), Password nvarchar(50), Address nvarchar(50), Primary Key (ID)  ) ; 
+Create Table Drugstore ( ID int, Name nvarchar(50) , Certificate nvarchar(50) , Username nvarchar(50), Password nvarchar(50), Address nvarchar(50), Primary Key (ID)  );
 
-
-
-
-
-____________________________________________________________________________________________________________________________________________________________
-
-
-kill all sql processes command: mysqladmin processlist -u root -p  |  awk '$2 ~ /^[0-9]/ {print "KILL "$2";"}' |  mysql -u root -p 
+Alter Table PhysicalActivity_Patient add column Type int;

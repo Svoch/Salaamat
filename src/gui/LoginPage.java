@@ -72,7 +72,7 @@ public class LoginPage extends JFrame {
 	public LoginPage() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 320);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -214,7 +214,7 @@ public class LoginPage extends JFrame {
 
 		JLabel newUserQuestionLabel = new JLabel("کاربر جدید هستید؟");
 		newUserQuestionLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		newUserQuestionLabel.setBounds(149, 210, 124, 16);
+		newUserQuestionLabel.setBounds(149, 210, 134, 16);
 		contentPane.add(newUserQuestionLabel);
 
 		JButton signupButton = new JButton("ثبت نام حساب کاربری جدید");
@@ -238,7 +238,7 @@ public class LoginPage extends JFrame {
 				hide();
 			}
 		});
-		signupButton.setBounds(18, 205, 164, 29);
+		signupButton.setBounds(10, 205, 164, 29);
 		contentPane.add(signupButton);
 
 		JButton adminLoginButton = new JButton("ورود مخصوص مدیر سامانه");
@@ -270,7 +270,7 @@ public class LoginPage extends JFrame {
 				}
 			}
 		});
-		adminLoginButton.setBounds(18, 243, 164, 29);
+		adminLoginButton.setBounds(10, 243, 164, 29);
 		contentPane.add(adminLoginButton);
 
 	}

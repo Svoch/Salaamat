@@ -46,6 +46,7 @@ public class PhysicalActivity {
 	@Id
 	private PhysicalActivityID ID;
 	private int measurement;
+	private int type;
 	
 	public PhysicalActivity() {
 		
@@ -66,6 +67,12 @@ public class PhysicalActivity {
 	}
 	public void setMeasurement(int measurement) {
 		this.measurement = measurement;
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
 	}
 	public int getDate() {
 		return ID.getDate();

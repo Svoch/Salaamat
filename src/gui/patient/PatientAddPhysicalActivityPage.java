@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -52,7 +53,7 @@ public class PatientAddPhysicalActivityPage extends JFrame {
 	public PatientAddPhysicalActivityPage() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 360);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -87,7 +88,7 @@ public class PatientAddPhysicalActivityPage extends JFrame {
 			
 			}
 		});
-		backButton.setBounds(6, 243, 117, 29);
+		backButton.setBounds(6, 290, 117, 29);
 		contentPane.add(backButton);
 
 		
@@ -119,37 +120,48 @@ public class PatientAddPhysicalActivityPage extends JFrame {
         chart.setBackgroundPaint(Color.WHITE);
 
 		chartPanel = new ChartPanel(chart);
-		chartPanel.setBounds(6, 118, 438, 113);
+		chartPanel.setBounds(6, 158, 438, 113);
 		chartPanel.setBackground(Color.WHITE);
 		contentPane.add(chartPanel);
 		
+		JLabel typeLabel = new JLabel("نوع فعالیت");
+		typeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		typeLabel.setBounds(302, 47, 130, 23);
+		contentPane.add(typeLabel);
+		
 		JLabel dateLabel = new JLabel("تاریخ فعالیت");
 		dateLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		dateLabel.setBounds(352, 47, 81, 23);
+		dateLabel.setBounds(302, 81, 130, 23);
 		contentPane.add(dateLabel);
 		
-		JLabel measurementLabel = new JLabel("میزان فعالیت");
+		JLabel measurementLabel = new JLabel("میزان کالری مصرفی");
 		measurementLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		measurementLabel.setBounds(352, 81, 81, 23);
+		measurementLabel.setBounds(302, 115, 130, 23);
 		contentPane.add(measurementLabel);
 		
+		String[] choices = { "پیاده‌روی","دو", "کوهنوردی","دوچرخه‌سواری"};
+		JComboBox<String> typeMenu = new JComboBox<String>(choices);
+		typeMenu.setBounds(180, 44, 134, 28);
+		contentPane.add(typeMenu);
+		
 		dateTextField = new JTextField();
-		dateTextField.setBounds(228, 44, 134, 28);
+		dateTextField.setBounds(180, 78, 134, 28);
 		contentPane.add(dateTextField);
 		dateTextField.setColumns(10);
 		
 		measurementTextField = new JTextField();
 		measurementTextField.setColumns(10);
-		measurementTextField.setBounds(228, 78, 134, 28);
+		measurementTextField.setBounds(180, 112, 134, 28);
 		contentPane.add(measurementTextField);
 		
 		JButton submitButton = new JButton("ثبت");
 		submitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//System.out.println(typeMenu.getSelectedIndex());
 			
 				if(!dateTextField.getText().equals("") && !measurementTextField.getText().equals("")) {
 					
-					((Patient) (new PatientUserManager().getLoggedInUser())).addPhysicalActivity(Integer.parseInt( measurementTextField.getText() ),Integer.parseInt( dateTextField.getText() ));
+					((Patient) (new PatientUserManager().getLoggedInUser())).addPhysicalActivity(typeMenu.getSelectedIndex(), Integer.parseInt( measurementTextField.getText() ),Integer.parseInt( dateTextField.getText() ));
 					
 					JOptionPane.showMessageDialog(null, "فعالیت بدنی مورد نظر با موفقیت ثبت شد.");
 					
@@ -158,7 +170,7 @@ public class PatientAddPhysicalActivityPage extends JFrame {
 					JOptionPane.showMessageDialog(null, "لطفاً اطلاعات فعالیت بدنی را کامل وارد کنید.");
 			}
 		});
-		submitButton.setBounds(121, 243, 117, 29);
+		submitButton.setBounds(121, 290, 117, 29);
 		contentPane.add(submitButton);
 	}
 }

@@ -170,8 +170,8 @@ public class Patient extends User {
 		List<PhysicalActivity> physicalActivities =  new PatientUserManager().getPhysicalActivitiesList(this) ;
 		return physicalActivities;
 	}
-	public void addPhysicalActivity(int measurement, int date) {
-		PatientUserManager.addPhysicalActivity(this,measurement,date);
+	public void addPhysicalActivity(int type, int measurement, int date) {
+		PatientUserManager.addPhysicalActivity(this,type, measurement,date);
 	}
 
 	

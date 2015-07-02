@@ -12,6 +12,7 @@
                     </composite-id>                            
                
                     <property name="measurement" column="Measurement" type="int"/>
+                    <property name="type" column="Type" type="int"/>
                 
                 </class>
                 

@@ -148,7 +148,7 @@ public interface IHibernateUserManager {
 		
 	}
 	
-	public static void addPhysicalActivity(Patient patient, int measurement, int date) {
+	public static void addPhysicalActivity(Patient patient,int type, int measurement, int date) {
 		
 		BasicConfigurator.configure();
 
@@ -160,6 +160,7 @@ public interface IHibernateUserManager {
 		
 		PhysicalActivity physicalActivity = new PhysicalActivity(patient.getID(),date);
 		physicalActivity.setMeasurement(measurement);
+		physicalActivity.setType(type);
 		
 		session.saveOrUpdate(physicalActivity);
 		tx.commit();
