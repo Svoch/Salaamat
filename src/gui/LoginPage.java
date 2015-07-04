@@ -12,6 +12,7 @@ import java.awt.HeadlessException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -83,7 +84,7 @@ public class LoginPage extends JFrame {
 		contentPane.add(usernameTextField);
 		usernameTextField.setColumns(10);
 
-		passwordTextField = new JTextField();
+		passwordTextField = new JPasswordField();
 		passwordTextField.setBounds(244, 130, 134, 28);
 		contentPane.add(passwordTextField);
 		passwordTextField.setColumns(10);

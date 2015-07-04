@@ -172,6 +172,7 @@ public class DoctorMainPage extends JFrame {
 		viewPatientsButton.setBounds(20, 151, 181, 37);
 		contentPane.add(viewPatientsButton);
 
+		// When double clicks on a patient's name
 		MouseListener mouseListener = new MouseAdapter() {
 			@SuppressWarnings({ "deprecation", "rawtypes" })
 			public void mouseClicked(MouseEvent mouseEvent) {
@@ -219,7 +220,7 @@ public class DoctorMainPage extends JFrame {
 
 		JLabel patientsList = new JLabel("لیست بیمار‌های شما:");
 		patientsList.setHorizontalAlignment(SwingConstants.CENTER);
-		patientsList.setBounds(308, 45, 117, 16);
+		patientsList.setBounds(308, 45, 150, 16);
 		contentPane.add(patientsList);
 		
 		JButton reviewIllnessesButton = new JButton("بررسی بیماری‌ها");
@@ -246,6 +247,28 @@ public class DoctorMainPage extends JFrame {
 		});
 		reviewIllnessesButton.setBounds(20, 73, 181, 37);
 		contentPane.add(reviewIllnessesButton);
+		
+		JButton reportButton = new JButton("گزارش تجمیعی");
+		reportButton.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							DoctorReportPage frame = new DoctorReportPage();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				contentPane.removeAll();
+				contentPane.repaint();
+				hide();
+			}
+		});
+		reportButton.setBounds(20, 33, 181, 37);
+		contentPane.add(reportButton);
 		
 		JButton reviewConsultationsPage = new JButton("مشاوره با بیماران");
 		reviewConsultationsPage.addActionListener(new ActionListener() {
