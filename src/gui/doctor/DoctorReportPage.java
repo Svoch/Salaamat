@@ -14,11 +14,14 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
+import medical.Illness;
 import users.Doctor;
 import users.management.DoctorUserManager;
+import utility.hibernate.IHibernateMedicalEntityManager;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 /**
  * 
@@ -88,8 +91,14 @@ public class DoctorReportPage extends JFrame {
 		label3.setBounds(340, 77, 111, 29);
 		contentPane.add(label3);
 		
-		String[] illnesses = { "تست ۱","تست ۲", "تست ۳","تست ۴"};
-		JComboBox<String> illMenu = new JComboBox<String>(illnesses);
+		List<Object> illnesses = IHibernateMedicalEntityManager.getAllIllnesses();
+		String[] illnessesList = new String[illnesses.size()];
+		int aa=0;
+		for (Object i: illnesses) {
+			illnessesList[aa++] = ((Illness)i).getTitle();
+		}
+		//String[] illnesses = { "تست ۱","تست ۲", "تست ۳","تست ۴"};
+		JComboBox<String> illMenu = new JComboBox<String>(illnessesList);
 		illMenu.setBounds(220, 80, 110, 28);
 		contentPane.add(illMenu);
 		
@@ -175,6 +184,22 @@ public class DoctorReportPage extends JFrame {
 							/*
 							 * TODO search here, and pass the result
 							 */
+							int date1, date2, press1, press2, sugar1, sugar2, act1, act2;
+							try {
+								date1 = Integer.parseInt(startDateField.getText());
+								date2 = Integer.parseInt(endDateField.getText());
+							} catch (java.lang.NumberFormatException e) {
+								date1 = 0;
+								date2 = 0;
+							};
+							
+							Illness illness = (Illness) illnesses.get(illMenu.getSelectedIndex());
+							press1 = Integer.parseInt(press1Field.getText());
+							press2 = Integer.parseInt(press2Field.getText());
+							sugar1 = Integer.parseInt(sugar1Field.getText());
+							sugar2 = Integer.parseInt(sugar2Field.getText());
+							act1 = Integer.parseInt(act1Field.getText());
+							act2 = Integer.parseInt(act2Field.getText());
 							int[] xdata = { 1,2,3,4,5};
 							int[] ydata = { 9,2,4,1,7};
 							DoctorShowReport frame = new DoctorShowReport(xdata, ydata);

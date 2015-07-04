@@ -86,7 +86,7 @@ public class Doctor extends User {
 		diagnosis.addMedicine(medicine);
 		IMedicalEntityManager.update(diagnosis);
 	}
-	public void addIllness(Patient patient, Illness illness) {
+	public void addIllness(Patient patient, Illness illness, date d) {
 		patient.addIllness(illness);
 		new PatientUserManager().update(patient);
 	}

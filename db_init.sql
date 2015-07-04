@@ -27,3 +27,8 @@ Create Table PhysicalActivity_Patient ( PatientID int , date int , measurement i
 Create Table Drugstore ( ID int, Name nvarchar(50) , Certificate nvarchar(50) , Username nvarchar(50), Password nvarchar(50), Address nvarchar(50), Primary Key (ID)  );
 
 Alter Table PhysicalActivity_Patient add column Type int;
+
+Insert Into Medicine Values (1, 'آسپیرین', 'داروی مسکن');
+Insert Into Medicine Values (2, 'دوکساپرام', 'داروی تنفسی');
+Insert Into Medicine Values (3, 'بروفن', 'داروی مسکن');
+
