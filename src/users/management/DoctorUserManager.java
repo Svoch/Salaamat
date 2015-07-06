@@ -80,7 +80,7 @@ public class DoctorUserManager implements IUserManager {
 
 	public void answerConsultation(Doctor doctor, Patient patient, String question, String answer) {
 		
-		IHibernateUserManager.makeConultation(doctor, patient, question, answer);
+		IHibernateUserManager.makeConultation(doctor, patient, question, answer, 1);
 		
 	}
 

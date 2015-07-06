@@ -72,8 +72,8 @@ public class Patient extends User {
 	 * was named 'makeDiscussion' in Class Diagram
 	 * @param doctor 
 	 */
-	public void consult(Doctor doctor, String question) {
-		new PatientUserManager().makeConsultation(doctor,this,question);
+	public void consult(Doctor doctor, String question, int date) {
+		new PatientUserManager().makeConsultation(doctor,this,question, date);
 	}
 
 

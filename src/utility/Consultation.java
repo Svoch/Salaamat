@@ -2,7 +2,6 @@ package utility;
 
 import java.io.Serializable;
 
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -50,6 +49,7 @@ public class Consultation {
 	private ConsultationID ID;
 	private String question;
 	private String answer;
+	private int date;
 	
 	public Consultation() {
 		
@@ -70,6 +70,13 @@ public class Consultation {
 	}
 	public void setAnswer(String answer) {
 		this.answer = answer;
+	}
+	public int getdate() {
+		return date;
+	}
+	public void setdate(int d) {
+		System.out.println(d);
+		date = d;
 	}
 	public ConsultationID getID() {
 		return ID;

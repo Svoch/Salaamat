@@ -137,7 +137,7 @@ public class DoctorAddIlnessToPatientPage extends JFrame {
 				 */
 
 				Illness illness = (Illness) IMedicalEntityManager.getIllness( illnessTitleTextField.getText() );
-
+				//int date = Integer.parseInt(illnessDiagnosisDateTextField.getText();
 				if(!illness.getTitle().equals(""))
 					( (Doctor) new DoctorUserManager().getLoggedInUser() ).addIllness(patient,illness);
 //					patient.addIllness(illness);

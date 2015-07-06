@@ -14,5 +14,5 @@ doctor1:doc1 علی علوی
 doctor2:doc2 مسعود حکیمی
 patient1:pat1 محسن احمدی
 patient2:pat2 احمد نعیمی
-
+daru1:daru1
 

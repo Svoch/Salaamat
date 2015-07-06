@@ -84,8 +84,8 @@ public class PatientUserManager implements IUserManager {
 
 	
 
-	public void makeConsultation(Doctor doctor, Patient patient,String question) {
-		IHibernateUserManager.makeConultation(doctor,patient,question,null);
+	public void makeConsultation(Doctor doctor, Patient patient,String question, int date) {
+		IHibernateUserManager.makeConultation(doctor,patient,question,null, date);
 	}
 
 	public static void addPhysicalActivity(Patient patient, int type, int measurement, int date) {

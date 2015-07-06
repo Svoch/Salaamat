@@ -32,3 +32,6 @@ Insert Into Medicine Values (1, 'آسپیرین', 'داروی مسکن');
 Insert Into Medicine Values (2, 'دوکساپرام', 'داروی تنفسی');
 Insert Into Medicine Values (3, 'بروفن', 'داروی مسکن');
 
+Alter Table Doctor_Patient add column date int;
+
+

@@ -112,7 +112,7 @@ public interface IHibernateUserManager {
 		return (Object) patient;	
 	}
 	
-	public static void makeConultation(Doctor doctor, Patient patient, String question, String answer) {
+	public static void makeConultation(Doctor doctor, Patient patient, String question, String answer, int date) {
 		
 		BasicConfigurator.configure();
     	
@@ -124,6 +124,7 @@ public interface IHibernateUserManager {
         Consultation consultation = new Consultation(doctor.getID(), patient.getID());
       	consultation.setQuestion(question);
        	consultation.setAnswer(answer);
+       	consultation.setdate(date);
        	
     	session.saveOrUpdate(consultation);                
         tx.commit();

@@ -13,7 +13,7 @@
                
                     <property name="question" column="Question" type="string"/>
                     <property name="answer" column="Answer" type="string"/>
-	            	
+	            	<property name="date" column="date" type="int"/>
                 </class>
                 
               </hibernate-mapping>

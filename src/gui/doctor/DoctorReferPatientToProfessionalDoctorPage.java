@@ -218,7 +218,7 @@ public class DoctorReferPatientToProfessionalDoctorPage extends JFrame {
 	    	public void actionPerformed(ActionEvent e) {
 	    		
 	    		if(selectedDoctor!=null) {
-	    			patient.consult(selectedDoctor, ((Doctor) (new DoctorUserManager().getLoggedInUser())).toString() + " to " + selectedDoctor.toString() + " / message: " + additionalInformationTextField.getText());
+	    			patient.consult(selectedDoctor, ((Doctor) (new DoctorUserManager().getLoggedInUser())).toString() + " to " + selectedDoctor.toString() + " / message: " + additionalInformationTextField.getText(), 1);
 	    			JOptionPane.showMessageDialog(null, "ارجاع بیمار با موفقیت انجام شد.");
 	    		}
 	    		else

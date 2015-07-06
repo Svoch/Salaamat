@@ -55,7 +55,7 @@ public class PatientConsultDoctorPage extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -136,7 +136,15 @@ public class PatientConsultDoctorPage extends JFrame {
 	    jList.addMouseListener(mouseListener);
 	    jList.setBackground(Color.WHITE);
 	    
+	    JLabel dl = new JLabel("تاریخ مراجعه");
+		dl.setHorizontalAlignment(SwingConstants.CENTER);
+		dl.setBounds(373, 278, 61, 21);
+		contentPane.add(dl);
 	    
+		JTextField datef = new JTextField();
+		datef.setColumns(10);
+		datef.setBounds(250, 278, 100, 40);
+		contentPane.add(datef);
 		
 		JButton backButton = new JButton("بازگشت");
 		backButton.addActionListener(new ActionListener() {
@@ -160,7 +168,7 @@ public class PatientConsultDoctorPage extends JFrame {
 			
 			}
 		});
-		backButton.setBounds(6, 243, 117, 29);
+		backButton.setBounds(6, 340, 117, 29);
 		contentPane.add(backButton);
 		
 		JButton submitButton = new JButton("ثبت");
@@ -170,7 +178,7 @@ public class PatientConsultDoctorPage extends JFrame {
 			
 				if(doctor!=null) {
 					if(!questionTextField.getText().equals("")) {
-						((Patient) (new PatientUserManager().getLoggedInUser())).consult(doctor,questionTextField.getText()); 
+						((Patient) (new PatientUserManager().getLoggedInUser())).consult(doctor,questionTextField.getText(), Integer.parseInt(datef.getText())); 
 						JOptionPane.showMessageDialog(null, "سؤال شما با موفقیت ثبت شد.");
 					}
 					else
@@ -180,7 +188,7 @@ public class PatientConsultDoctorPage extends JFrame {
 					JOptionPane.showMessageDialog(null, "لطفاً پزشکی را انتخاب کنید.");
 			}
 		});
-		submitButton.setBounds(121, 243, 117, 29);
+		submitButton.setBounds(121, 340, 117, 29);
 		contentPane.add(submitButton);
 		
 		JLabel doctorsListLabel = new JLabel("لیست پزشکان شما:");
